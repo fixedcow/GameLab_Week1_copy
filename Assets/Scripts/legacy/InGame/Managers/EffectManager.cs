@@ -10,9 +10,15 @@ public class EffectManager : MonoBehaviour
 	{
 		smash = 0
 	}
+	public enum EParticleEffectType
+	{
+		attack = 0,
+		smash = 1
+	}
 	#endregion
 	#region PrivateVariables
 	[SerializeField] private List<EffectBundle> effects = new List<EffectBundle>();
+	[SerializeField] private List<ParticleSystem> particles = new List<ParticleSystem>();
 	#endregion
 	#region PublicMethod
 	public void Awake()
@@ -39,6 +45,12 @@ public class EffectManager : MonoBehaviour
             current.transform.localScale = new Vector3(_rotMult, 1, 1);
             current.SetActive(true);
 		}
+	}
+	public void CallParticleEffect(EParticleEffectType type, Vector2 position)
+	{
+		ParticleSystem current = particles[(int)type];
+		current.gameObject.transform.position = position;
+		current.Play();
 	}
 	#endregion
 	#region PrivateMethod

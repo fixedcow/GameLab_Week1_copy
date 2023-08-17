@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     #region PrivateVariables
     private int m_dir = 1;
     private float m_speed = 5.0f;
-    private float m_jumpPower = 7.0f;
+    private float m_jumpPower = 8.0f;
     private float m_weakAttackCoolTime = 0.5f;
     private float m_strongAttackCoolTime = 1.083f;
     private float m_counterCoolTime = 0.7f;
@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
     private bool m_isShield = false;
     private bool m_isKnockBack = false;
     private bool m_isWeakAttack = false;
-    
 
     private Rigidbody2D m_rigidbody;
     private Collider2D m_collider;
@@ -137,7 +136,6 @@ public class Player : MonoBehaviour
             return;
 
         m_canMove = false;
-        //m_animator.SetBool("StrongAttack", true);
         m_animator.SetTrigger("StrongAttack");
 
         if (m_tutorialKeyInput[(int)TutorialInput.StrongAttack].isCheck() == false)
@@ -233,7 +231,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             m_isGround = true;
-        }   
+        }
     }
 
     private void SetMovable()
@@ -352,8 +350,6 @@ public class Player : MonoBehaviour
 
         StartCoroutine(ShowBodyShield());
     }
-
-
 
     IEnumerator ShowBodyShield()
     {

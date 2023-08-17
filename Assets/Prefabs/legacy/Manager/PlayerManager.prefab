@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_player1: {fileID: 8239867427988198602}
   m_player2: {fileID: 8239867428409868762}
+  isTutorialPlayed: 0
   m_keyName:
   - {fileID: 0}
   - {fileID: 0}
@@ -226,22 +227,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4261560690299887119}
     m_Modifications:
-    - target: {fileID: 7302070078589584792, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078589584792, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078589584792, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078589584792, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7302070078668890855, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
       propertyPath: m_Name
       value: smash particle
@@ -289,54 +274,6 @@ PrefabInstance:
     - target: {fileID: 7302070078668890856, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: InitialModule.startSpeed.minScalar
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.ctime1
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.ctime2
-      value: 65150
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.g
-      value: 0.03875816
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key2.g
-      value: 0.90592486
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key2.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7302070078668890857, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.m_NumColorKeys
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cc8daed7bba85d49b1dbd24e55ad239, type: 3}
