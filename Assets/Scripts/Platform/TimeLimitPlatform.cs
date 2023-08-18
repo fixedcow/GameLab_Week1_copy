@@ -33,6 +33,7 @@ public class TimeLimitPlatform : Platform
 		rb.bodyType = RigidbodyType2D.Dynamic;
         gameObject.layer = LayerMask.NameToLayer("Default");
 		col.enabled = false;
+		rb.angularVelocity = Random.Range(-30, 30);
         Invoke(nameof(Deactive), 3f);
 	}
 	#endregion

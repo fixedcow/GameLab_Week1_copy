@@ -12,7 +12,8 @@ public class CameraShaker : MonoBehaviour
 	{
 		attack = 0,
 		smash = 1,
-		dead = 2
+		dead = 2,
+		earthquake = 3
 	}
 	[SerializeField] List<CameraShakingData> datas = new List<CameraShakingData>();
 	#endregion
@@ -27,8 +28,12 @@ public class CameraShaker : MonoBehaviour
 	}
 	public void DeadShake()
 	{
-        StartCoroutine(nameof(IE_Shake), datas[(int)Etype.dead]);
-    }
+		StartCoroutine(nameof(IE_Shake), datas[(int)Etype.dead]);
+	}
+	public void EarthquakeShake()
+	{
+		StartCoroutine(nameof(IE_Shake), datas[(int)Etype.earthquake]);
+	}
 	#endregion
 	#region PrivatecMethod
 	private IEnumerator IE_Shake(CameraShakingData data)

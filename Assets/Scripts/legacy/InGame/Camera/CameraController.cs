@@ -70,6 +70,10 @@ public class CameraController : MonoBehaviour
 	{
 		shaker.DeadShake();
 	}
+	public void EarthquakeShake()
+	{
+		shaker.EarthquakeShake();
+	}
 	public void GoTutorialRoom()
 	{
 		m_currentField = m_tutorialRoomFieldData;
