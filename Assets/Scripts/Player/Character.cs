@@ -11,19 +11,33 @@ public abstract class Character : MonoBehaviour
 	#region PrivateVariables
 	protected Rigidbody2D rb;
 	protected Animator anim;
+	[SerializeField] private List<SpriteRenderer> mainColorPart = new List<SpriteRenderer>();
+	[SerializeField] private List<SpriteRenderer> subColorPart = new List<SpriteRenderer>();
 
-	[SerializeField] private float moveSpeed;
-	[SerializeField] private float jumpForce;
+	[SerializeField] protected float moveSpeed;
+	[SerializeField] protected float jumpForce;
 	protected bool canMove = true;
 	protected bool canJump = true;
+	protected bool canAttack = true;
 	protected bool canAct = true;
 	#endregion
 
 	#region PublicMethod
-	public bool IsAnimationStateName(string str)
+	public void SetColor(Color32 _main, Color32 _sub)
+	{
+		foreach(SpriteRenderer sr in mainColorPart)
+		{
+			sr.color = _main;
+		}
+		foreach(SpriteRenderer sr in subColorPart)
+		{
+			sr.color = _sub;
+		}
+	}
+	public bool IsAnimationStateName(string _str)
 	{
 		AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-		return info.IsName(str);
+		return info.IsName(_str);
 	}
 	public void SetCanAct()
 	{
@@ -33,8 +47,11 @@ public abstract class Character : MonoBehaviour
 	{
 		if (canMove == false || canAct == false)
 			return;
-
-		transform.Translate(_direction * moveSpeed * Vector2.right * Time.deltaTime);
+		RaycastHit2D wall = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 0.6f, 1 << LayerMask.NameToLayer("Wall"));
+		RaycastHit2D groundR = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 0.6f, 1 << LayerMask.NameToLayer("Ground"));
+		Debug.DrawRay(transform.position, Vector2.right * 0.7f * transform.localScale.x, Color.red);
+		if(wall.collider == null && groundR.collider == null)
+			transform.Translate(_direction * moveSpeed * Vector2.right * Time.deltaTime);
 		transform.localScale = new Vector3(_direction, 1, 1);
 	}
 	public void Jump()
@@ -45,11 +62,11 @@ public abstract class Character : MonoBehaviour
 		canJump = false;
 		rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
 	}
-	public virtual void Hit(Vector2 direction, float magnitude)
+	public virtual void Hit(Vector2 _direction, float _magnitude)
 	{
 		canAct = false;
 		anim.SetTrigger("hit");
-		rb.velocity = magnitude * direction;
+		rb.velocity = _magnitude * _direction;
 		anim.ResetTrigger("command1");
 		anim.ResetTrigger("command2");
 		anim.ResetTrigger("command3");
@@ -74,19 +91,56 @@ public abstract class Character : MonoBehaviour
 		if (rb.velocity.y > 0)
 			return;
 
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.7f, 1 << LayerMask.NameToLayer("Ground"));
+		bool isGround = false;
+		bool isHang = false;
+
+		RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 0.7f, 1 << LayerMask.NameToLayer("Ground"));
 		Debug.DrawRay(transform.position, Vector2.down * 0.7f, Color.red);
 
-		if (hit.collider == null)
-			return;
-
-		if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Slime"))
+		if (hitGround.collider != null)
 		{
-			canJump = false;
+			isGround = true;
+			if (hitGround.collider.gameObject.layer == LayerMask.NameToLayer("Slime"))
+			{
+				canJump = false;
+			}
+			else if (hitGround.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+			{
+				canJump = true;
+			}
 		}
-		else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+		else
 		{
-			canJump = true;
+			isGround = false;
+		}
+
+		RaycastHit2D hitCliff = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 0.85f, 1 << LayerMask.NameToLayer("Ground"));
+		Debug.DrawRay(transform.position, Vector2.right * 0.8f * transform.localScale.x, Color.red);
+
+		if(hitCliff.collider != null)
+		{
+			isHang = true;
+		}
+		else
+		{
+			isHang = false;
+		}
+
+		if(isGround == false && isHang == true)
+		{
+			anim.SetBool("hang", true);
+			anim.ResetTrigger("command1");
+			anim.ResetTrigger("command2");
+			anim.ResetTrigger("command3");
+			if (IsAnimationStateName("Hang"))
+			{
+				rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, 0, float.MaxValue));
+				canJump = true;
+			}
+		}
+		else
+		{
+			anim.SetBool("hang", false);
 		}
 	}
 	#endregion

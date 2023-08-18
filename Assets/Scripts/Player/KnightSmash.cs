@@ -23,7 +23,7 @@ public class KnightSmash : MonoBehaviour
 	{
 		float dirMult = transform.parent.localScale.x;
 		Collider2D col = Physics2D.OverlapArea(transform.position + (dirMult * pointA)
-			, transform.position + (dirMult * pointB), 1 << LayerMask.NameToLayer("Player"));
+			, transform.position + (dirMult * pointB), 1 << LayerMask.NameToLayer("Character"));
 		if (col != null)
 		{
 			Character c;

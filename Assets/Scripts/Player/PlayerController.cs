@@ -5,17 +5,25 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	#region PublicVariables
+	public static PlayerController instance;
 	#endregion
 
 	#region PrivateVariables
-	[SerializeField] Character player1;
-	[SerializeField] Character player2;
+	[SerializeField] private Character player1;
+	[SerializeField] private Character player2;
 	#endregion
 
 	#region PublicMethod
+	public void SetPlayer1(Character c) => player1 = c;
+	public void SetPlayer2(Character c) => player2 = c;
 	#endregion
 
 	#region PrivateMethod
+	private void Awake()
+	{
+		if (instance == null)
+			instance = this;
+	}
 	private void Update()
 	{
 		Player1InputControl();
@@ -23,6 +31,8 @@ public class PlayerController : MonoBehaviour
 	}
 	private void Player1InputControl()
 	{
+		if (player1 == null)
+			return;
 		if (Input.GetKey(KeyCode.A))
 		{
 			player1.Move(-1);
@@ -50,6 +60,8 @@ public class PlayerController : MonoBehaviour
 	}
 	private void Player2InputControl()
 	{
+		if (player2 == null)
+			return;
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
 			player2.Move(-1);

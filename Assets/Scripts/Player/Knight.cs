@@ -18,20 +18,20 @@ public class Knight : Character
 	}
 	public override void Command1()
 	{
-		if (canAct == false)
+		if (canAct == false || canAttack == false)
 			return;
 		anim.SetTrigger("command1");
 	}
 	public override void Command2()
 	{
-		if (canAct == false)
+		if (canAct == false || canAttack == false)
 			return;
 		canAct = false;
 		anim.SetTrigger("command2");
 	}
 	public override void Command3()
 	{
-		if (canAct == false)
+		if (canAct == false || canAttack == false)
 			return;
 		canAct = false;
 		anim.SetTrigger("command3");

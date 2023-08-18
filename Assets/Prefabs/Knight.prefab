@@ -1326,8 +1326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d6b3b6161120a4e97a1db8e76c674b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {x: 0.5, y: 1.2, z: 0}
-  pointB: {x: 5.5, y: -1.2, z: 0}
+  pointA: {x: 0.5, y: 1.3, z: 0}
+  pointB: {x: 5.5, y: -1.3, z: 0}
   direction: {x: 1, y: 0.6}
   magnitude: 20
 --- !u!1 &4499776349908447390
@@ -1607,7 +1607,7 @@ GameObject:
   - component: {fileID: 8932966110394495427}
   - component: {fileID: 809676222790862419}
   - component: {fileID: 2520410194681627610}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1642,8 +1642,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04981ffec63c9ac4da33ecb0847a4c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainColorPart:
+  - {fileID: 7845239159424007022}
+  subColorPart:
+  - {fileID: 4218712155911538523}
+  - {fileID: 4845441058273006893}
+  - {fileID: 1602459681395545958}
+  - {fileID: 7919159605952743292}
+  - {fileID: 8761461415978629093}
+  - {fileID: 9026106643215853866}
+  - {fileID: 849375273871656394}
   moveSpeed: 7
-  jumpForce: 14
+  jumpForce: 13
   counterAnim: {fileID: 4015355647860865039}
 --- !u!50 &8932966110394495427
 Rigidbody2D:
