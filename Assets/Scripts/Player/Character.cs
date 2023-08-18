@@ -122,10 +122,15 @@ public abstract class Character : MonoBehaviour
 			{
 				canJump = true;
 			}
+			Platform p;
+			if(hitGround.collider.TryGetComponent(out p))
+			{
+				p.Touched();
+			}
 		}
 		else
 		{
-			Invoke("CantJumpForInvoke", 0.1f);
+			Invoke(nameof(CantJumpForInvoke), 0.1f);
 			isGround = false;
 		}
 
@@ -135,6 +140,11 @@ public abstract class Character : MonoBehaviour
 		if(hitCliff.collider != null)
 		{
 			isHang = true;
+			Platform p;
+			if (hitCliff.collider.TryGetComponent(out p))
+			{
+				p.Touched();
+			}
 		}
 		else
 		{

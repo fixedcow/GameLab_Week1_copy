@@ -24,6 +24,10 @@ public class TimeLimitPlatform : Platform
 		col.enabled = true;
 		Invoke(nameof(WarnToDrop), lifeTime);
 	}
+	public override void Touched()
+	{
+
+	}
 	public void WarnToDrop()
 	{
 		anim.Play("DropToWarn");

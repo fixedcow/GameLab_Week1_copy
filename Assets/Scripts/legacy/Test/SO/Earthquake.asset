@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc87ce495524d1c4a9dccccb6f598632, type: 3}
   m_Name: Earthquake
   m_EditorClassIdentifier: 
-  roughness: 5
-  magnitude: 5
+  roughness: 10
+  magnitude: 0.1
   duration: 50

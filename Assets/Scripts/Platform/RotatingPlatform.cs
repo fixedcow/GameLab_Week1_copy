@@ -17,6 +17,10 @@ public class RotatingPlatform : Platform
 	{
 		anim.SetFloat("speedMult", speed);
 	}
+	public override void Touched()
+	{
+	
+	}
 	#endregion
 
 	#region PrivateMethod

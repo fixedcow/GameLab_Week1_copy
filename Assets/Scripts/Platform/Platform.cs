@@ -12,6 +12,7 @@ public abstract class Platform : MonoBehaviour
 
 	#region PublicMethod
 	public abstract void Initialize();
+	public abstract void Touched();
 	#endregion
 
 	#region PrivateMethod
