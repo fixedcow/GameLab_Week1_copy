@@ -13,7 +13,8 @@ public class EffectManager : MonoBehaviour
 	public enum EParticleEffectType
 	{
 		attack = 0,
-		smash = 1
+		smash = 1,
+		dead = 2
 	}
 	#endregion
 	#region PrivateVariables

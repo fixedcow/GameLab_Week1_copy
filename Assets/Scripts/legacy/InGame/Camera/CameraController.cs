@@ -66,6 +66,10 @@ public class CameraController : MonoBehaviour
 	{
 		shaker.SmashShake();
 	}
+	public void DeadShake()
+	{
+		shaker.DeadShake();
+	}
 	public void GoTutorialRoom()
 	{
 		m_currentField = m_tutorialRoomFieldData;

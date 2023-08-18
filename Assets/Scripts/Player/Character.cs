@@ -77,7 +77,8 @@ public abstract class Character : MonoBehaviour
 	}
 	public void Dead()
 	{
-		CameraController.instance.SmashShake();
+		CameraController.instance.DeadShake();
+		EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.dead, transform.position);
 		rb.velocity = Vector2.zero;
 		owner.PlayerDead();
 	}

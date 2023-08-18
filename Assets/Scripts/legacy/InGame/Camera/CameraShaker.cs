@@ -11,19 +11,24 @@ public class CameraShaker : MonoBehaviour
 	private enum Etype
 	{
 		attack = 0,
-		smash = 1
+		smash = 1,
+		dead = 2
 	}
 	[SerializeField] List<CameraShakingData> datas = new List<CameraShakingData>();
 	#endregion
 	#region PublicMethod
 	public void AttackShake()
 	{
-		StartCoroutine("IE_Shake", datas[(int)Etype.attack]);
+		StartCoroutine(nameof(IE_Shake), datas[(int)Etype.attack]);
 	}
 	public void SmashShake()
 	{
-		StartCoroutine("IE_Shake", datas[(int)Etype.smash]);
+		StartCoroutine(nameof(IE_Shake), datas[(int)Etype.smash]);
 	}
+	public void DeadShake()
+	{
+        StartCoroutine(nameof(IE_Shake), datas[(int)Etype.dead]);
+    }
 	#endregion
 	#region PrivatecMethod
 	private IEnumerator IE_Shake(CameraShakingData data)
