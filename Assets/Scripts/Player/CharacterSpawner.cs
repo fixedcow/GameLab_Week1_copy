@@ -22,7 +22,7 @@ public class CharacterSpawner : MonoBehaviour
 
 	private const int MAX_TRY_COUNT = 10;
 	private const int MAP_WIDTH = 20;
-	private const int MAP_HEIGHT = 20;
+	private const int MAP_HEIGHT = 15;
 	#endregion
 
 	#region PublicMethod
@@ -36,6 +36,8 @@ public class CharacterSpawner : MonoBehaviour
 		Character c = Instantiate(player1, new Vector2(-5, MAP_HEIGHT), Quaternion.identity).GetComponent<Character>();
 		c.SetColor(player1ColorMain, player1ColorSub);
 		PlayerController.instance.SetPlayer1(c);
+		CameraController.instance.SetPlayer1(c.gameObject);
+		Indicator.instance.SetPlayer1(c.transform);
 	}
 	public void SetPlayer2(GameObject _target)
 	{
@@ -47,6 +49,8 @@ public class CharacterSpawner : MonoBehaviour
 		Character c = Instantiate(player2, new Vector2(5, MAP_HEIGHT), Quaternion.identity).GetComponent<Character>();
 		c.SetColor(player2ColorMain, player2ColorSub);
 		PlayerController.instance.SetPlayer2(c);
+		CameraController.instance.SetPlayer2(c.gameObject);
+		Indicator.instance.SetPlayer2(c.transform);
 		c.transform.localScale = new Vector3(-1, 1, 1);
 	}
 	public void Respawn(Character _target)
@@ -69,6 +73,7 @@ public class CharacterSpawner : MonoBehaviour
 		{
 			SetPlayer1(TEST);
 			SetPlayer2(TEST);
+			CameraController.instance.PlayerChasingStart();
 		}
 		// TESTEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}

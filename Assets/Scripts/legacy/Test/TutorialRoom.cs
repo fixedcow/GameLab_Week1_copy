@@ -13,7 +13,6 @@ public class TutorialRoom : MonoBehaviour
 	[SerializeField] private GameObject m_floor;
 
 	[SerializeField] private List<TutorialButton> m_buttons = new List<TutorialButton>();
-	[SerializeField] private BaseStage m_stageTrigger;
 	[SerializeField] private int m_count = 0;
 	#endregion
 	#region PublicMethod
@@ -32,9 +31,6 @@ public class TutorialRoom : MonoBehaviour
 	}
 	public void ButtonChecked()
 	{
-		if (PlayerManager.instance.isTutorialPlayed == false)
-			return;
-
 		++m_count;
 		if(m_count >= m_buttons.Count)
 		{
@@ -49,7 +45,6 @@ public class TutorialRoom : MonoBehaviour
         GameManager.instance.GameStart();
 		m_floor.SetActive(false);
 		Invoke("RegeneratePlatform", 3f);
-		m_stageTrigger.StartStage();
     }
 	private void RegeneratePlatform()
 	{

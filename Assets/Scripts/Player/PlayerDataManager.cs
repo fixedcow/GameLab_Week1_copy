@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadLine : MonoBehaviour
+public class PlayerDataManager : MonoBehaviour
 {
 	#region PublicVariables
 	#endregion
 
 	#region PrivateVariables
+	[SerializeField] private int lifeCount;
+	private int initLifeCount = 5;
 	#endregion
 
 	#region PublicMethod
+	public void Initialize()
+	{
+		lifeCount = initLifeCount;
+	}
+	public void SubLife()
+	{
+		--lifeCount;
+	}
 	#endregion
 
 	#region PrivateMethod
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		Character c = other.GetComponent<Character>();
-		if (c != null)
-		{
-			c.Dead();
-		}
-	}
 	#endregion
 }

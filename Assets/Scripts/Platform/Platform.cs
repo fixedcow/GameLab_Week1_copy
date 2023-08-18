@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadLine : MonoBehaviour
+public class Platform : MonoBehaviour
 {
 	#region PublicVariables
 	#endregion
@@ -14,13 +14,5 @@ public class DeadLine : MonoBehaviour
 	#endregion
 
 	#region PrivateMethod
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		Character c = other.GetComponent<Character>();
-		if (c != null)
-		{
-			c.Dead();
-		}
-	}
 	#endregion
 }

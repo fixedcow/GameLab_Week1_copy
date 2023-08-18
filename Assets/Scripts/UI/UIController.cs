@@ -2,25 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadLine : MonoBehaviour
+public class UIController : MonoBehaviour
 {
 	#region PublicVariables
 	#endregion
 
 	#region PrivateVariables
+	[SerializeField] private Indicator indicator;
 	#endregion
 
 	#region PublicMethod
+	public void DrawUI()
+	{
+		indicator.gameObject.SetActive(true);
+	}
+	public void HideUI()
+	{
+		indicator.gameObject.SetActive(false);
+	}
 	#endregion
 
 	#region PrivateMethod
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		Character c = other.GetComponent<Character>();
-		if (c != null)
-		{
-			c.Dead();
-		}
-	}
 	#endregion
 }

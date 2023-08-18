@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8245720743676752516}
-  - component: {fileID: 1648901369}
   m_Layer: 0
   m_Name: MainImage
   m_TagString: Untagged
@@ -36,20 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1648901369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8245720743676752519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be35cc5f3dae19244ae6d1bd40708e6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_stagePanel: {fileID: 0}
-  m_textMeshPro: {fileID: 5482349035141319065}
 --- !u!1 &8836201975366109067
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +468,11 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3303764869314224874, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
+    - {fileID: 5485572811971768686, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
+    - {fileID: 8090078310217141087, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
+    - {fileID: 1611091882090352309, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
 --- !u!4 &1578598254761236774 stripped
 Transform:
@@ -653,7 +642,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.03529412
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3303764869314224874, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
+    - {fileID: 5485572811971768686, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
+    - {fileID: 8090078310217141087, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
+    - {fileID: 1611091882090352309, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e629b16ad16c253409a1aae16aa08517, type: 3}
 --- !u!4 &1578598253991684136 stripped
 Transform:

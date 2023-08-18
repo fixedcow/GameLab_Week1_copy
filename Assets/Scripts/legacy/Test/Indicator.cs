@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Indicator : MonoBehaviour
 {
-    #region PublicVariables
+	#region PublicVariables
+	public static Indicator instance;
     #endregion
 
     #region PrivateVariables
@@ -26,16 +27,31 @@ public class Indicator : MonoBehaviour
 
     float m_cameraBound = 0.5f;
 
-    #endregion
+	#endregion
 
-    #region PublicMethod
-    #endregion
+	#region PublicMethod
+	public void SetPlayer1(Transform target)
+	{
+		m_player1 = target;
+	}
+	public void SetPlayer2(Transform target)
+	{
+		m_player2 = target;
+	}
+	#endregion
 
-    #region PrivateMethod
-    private void Update()
+	#region PrivateMethod
+	private void Awake()
+	{
+		if (instance == null)
+			instance = this;
+	}
+	private void Update()
     {
-        IndicatePlayer(m_player1, m_indicator1);
-        IndicatePlayer(m_player2, m_indicator2);
+		if(m_player1 != null)
+			IndicatePlayer(m_player1, m_indicator1);
+		if(m_player2 != null)
+			IndicatePlayer(m_player2, m_indicator2);
     }
     private void IndicatePlayer(Transform _player, GameObject _indicator)
     {
@@ -139,8 +155,6 @@ public class Indicator : MonoBehaviour
         else
             m_isActive = false;
 
-		#endregion
-
 		GameObject dirObject = _indicator.transform.Find("direction").gameObject;
 
 		Vector2 direction = GetPlayerDirection(_player, _indicator.transform);
@@ -160,4 +174,5 @@ public class Indicator : MonoBehaviour
 		Quaternion rotation = Quaternion.Slerp(_indicatorDirection.transform.rotation, angleAxis, 5 * Time.deltaTime);
 		_indicatorDirection.transform.localRotation = rotation;
 	}
+	#endregion
 }

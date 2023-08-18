@@ -39,6 +39,8 @@ public class CameraController : MonoBehaviour
 		if(m_chasePlayer == true)
 			SetCameraState();
 	}
+	public void SetPlayer1(GameObject target) => m_player1 = target;
+	public void SetPlayer2(GameObject target) => m_player2 = target;
 	public void PlayerChasingStart()
 	{
 		m_chasePlayer = true;
