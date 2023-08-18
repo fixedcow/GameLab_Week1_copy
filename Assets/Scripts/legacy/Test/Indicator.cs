@@ -30,13 +30,10 @@ public class Indicator : MonoBehaviour
 	#endregion
 
 	#region PublicMethod
-	public void SetPlayer1(Transform target)
+	public void SetPlayer(Transform _p1, Transform _p2)
 	{
-		m_player1 = target;
-	}
-	public void SetPlayer2(Transform target)
-	{
-		m_player2 = target;
+		m_player1 = _p1;
+		m_player2 = _p2;
 	}
 	#endregion
 

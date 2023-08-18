@@ -11,8 +11,8 @@ public class CameraController : MonoBehaviour
 	#region PrivateVariables
 	[SerializeField] private float m_camSpeed;
 	[SerializeField] private FieldData m_currentField;
-	[SerializeField] private GameObject m_player1;
-	[SerializeField] private GameObject m_player2;
+	[SerializeField] private Transform m_player1;
+	[SerializeField] private Transform m_player2;
 	[SerializeField] private List<Parallax> m_parallaxes = new List<Parallax>();
 	private float m_camX => main.orthographicSize * ((float)Screen.width / Screen.height);
 	private float m_camY => main.orthographicSize;
@@ -39,8 +39,11 @@ public class CameraController : MonoBehaviour
 		if(m_chasePlayer == true)
 			SetCameraState();
 	}
-	public void SetPlayer1(GameObject target) => m_player1 = target;
-	public void SetPlayer2(GameObject target) => m_player2 = target;
+	public void SetPlayer(Transform _p1, Transform _p2)
+	{
+		m_player1 = _p1;
+		m_player2 = _p2;
+	}
 	public void PlayerChasingStart()
 	{
 		m_chasePlayer = true;

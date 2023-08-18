@@ -5,86 +5,54 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	#region PublicVariables
-	public static PlayerController instance;
 	#endregion
 
 	#region PrivateVariables
-	[SerializeField] private Character player1;
-	[SerializeField] private Character player2;
+	[SerializeField] private Character character;
+	[SerializeField] private KeyCode leftMove;
+	[SerializeField] private KeyCode rightMove;
+	[SerializeField] private KeyCode jump;
+	[SerializeField] private KeyCode command1;
+	[SerializeField] private KeyCode command2;
+	[SerializeField] private KeyCode command3;
 	#endregion
 
 	#region PublicMethod
-	public void SetPlayer1(Character c) => player1 = c;
-	public void SetPlayer2(Character c) => player2 = c;
+	public void SetCharater(Character c) => character = c;
 	#endregion
 
 	#region PrivateMethod
-	private void Awake()
-	{
-		if (instance == null)
-			instance = this;
-	}
 	private void Update()
 	{
-		Player1InputControl();
-		Player2InputControl();
+		PlayerInputControl();
 	}
-	private void Player1InputControl()
+	private void PlayerInputControl()
 	{
-		if (player1 == null)
+		if (character == null)
 			return;
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKey(leftMove))
 		{
-			player1.Move(-1);
+			character.Move(-1);
 		}
-		if (Input.GetKey(KeyCode.D))
+		if (Input.GetKey(rightMove))
 		{
-			player1.Move(1);
+			character.Move(1);
 		}
-		if (Input.GetKeyDown(KeyCode.W))
+		if (Input.GetKeyDown(jump))
 		{
-			player1.Jump();
+			character.Jump();
 		}
-		if (Input.GetKeyDown(KeyCode.G))
+		if (Input.GetKeyDown(command1))
 		{
-			player1.Command1();
+			character.Command1();
 		}
-		if (Input.GetKeyDown(KeyCode.H))
+		if (Input.GetKeyDown(command2))
 		{
-			player1.Command2();
+			character.Command2();
 		}
-		if (Input.GetKeyDown(KeyCode.J))
+		if (Input.GetKeyDown(command3))
 		{
-			player1.Command3();
-		}
-	}
-	private void Player2InputControl()
-	{
-		if (player2 == null)
-			return;
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			player2.Move(-1);
-		}
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			player2.Move(1);
-		}
-		if (Input.GetKeyDown(KeyCode.UpArrow))
-		{
-			player2.Jump();
-		}
-		if (Input.GetKeyDown(KeyCode.L))
-		{
-			player2.Command1();
-		}
-		if (Input.GetKeyDown(KeyCode.Semicolon))
-		{
-			player2.Command2();
-		}
-		if (Input.GetKeyDown(KeyCode.Quote))
-		{
-			player2.Command3();
+			character.Command3();
 		}
 	}
 	#endregion

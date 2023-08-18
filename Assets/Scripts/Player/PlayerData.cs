@@ -2,24 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDataManager : MonoBehaviour
+public class PlayerData : MonoBehaviour
 {
 	#region PublicVariables
 	#endregion
 
 	#region PrivateVariables
-	[SerializeField] private int lifeCount;
+	[SerializeField] private UILifeCountText text;
+	private int life;
 	private int initLifeCount = 5;
 	#endregion
 
 	#region PublicMethod
 	public void Initialize()
 	{
-		lifeCount = initLifeCount;
+		life = initLifeCount;
+		text.Print(life, false);
 	}
-	public void SubLife()
+	public int SubLife()
 	{
-		--lifeCount;
+		--life;
+		text.Print(life);
+		return life;
 	}
 	#endregion
 

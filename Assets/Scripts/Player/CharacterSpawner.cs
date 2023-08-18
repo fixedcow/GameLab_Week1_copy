@@ -5,78 +5,43 @@ using UnityEngine;
 public class CharacterSpawner : MonoBehaviour
 {
 	#region PublicVariables
-	public static CharacterSpawner instance;
-	// TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	public GameObject TEST;
-	// TESTEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	#endregion
 
 	#region PrivateVariables
-	[SerializeField] private GameObject player1;
-	[SerializeField] private GameObject player2;
+	[SerializeField] private GameObject characterPrefab;
 
-	private Color32 player1ColorMain = new Color32(123, 9, 9, 255);
-	private Color32 player1ColorSub = new Color32(72, 17, 17, 255);
-	private Color32 player2ColorMain = new Color32(35, 104, 140, 255);
-	private Color32 player2ColorSub = new Color32(9, 65, 98, 255);
+	[SerializeField] private Color32 colorMain;
+	[SerializeField] private Color32 colorSub;
 
+	private int firstSpawnPointX;
+	private int localXScale;
 	private const int MAX_TRY_COUNT = 10;
 	private const int MAP_WIDTH = 20;
 	private const int MAP_HEIGHT = 15;
 	#endregion
 
 	#region PublicMethod
-	public void SetPlayer1(GameObject _target)
+	public Character SpawnPlayer(GameObject _target)
 	{
-		if (player1 != null)
-		{
-			Destroy(player1.gameObject);
-		}
-		player1 = _target;
-		Character c = Instantiate(player1, new Vector2(-5, MAP_HEIGHT), Quaternion.identity).GetComponent<Character>();
-		c.SetColor(player1ColorMain, player1ColorSub);
-		PlayerController.instance.SetPlayer1(c);
-		CameraController.instance.SetPlayer1(c.gameObject);
-		Indicator.instance.SetPlayer1(c.transform);
-	}
-	public void SetPlayer2(GameObject _target)
-	{
-		if (player2 != null)
-		{
-			Destroy(player2.gameObject);
-		}
-		player2 = _target;
-		Character c = Instantiate(player2, new Vector2(5, MAP_HEIGHT), Quaternion.identity).GetComponent<Character>();
-		c.SetColor(player2ColorMain, player2ColorSub);
-		PlayerController.instance.SetPlayer2(c);
-		CameraController.instance.SetPlayer2(c.gameObject);
-		Indicator.instance.SetPlayer2(c.transform);
-		c.transform.localScale = new Vector3(-1, 1, 1);
+		characterPrefab = _target;
+		Character c = Instantiate(characterPrefab, new Vector2(firstSpawnPointX, MAP_HEIGHT), Quaternion.identity).GetComponent<Character>();
+		c.SetColor(colorMain, colorSub);
+		c.transform.localScale = new Vector3(localXScale, 1, 1);
+		return c;
 	}
 	public void Respawn(Character _target)
 	{
 		Vector2 position = GetRandomSafePositionToSpawn();
 		_target.transform.position = position;
 	}
+	public void SetFirstSpawnPoint(int xPos)
+	{
+		firstSpawnPointX = xPos;
+		localXScale = xPos > 0 ? -1 : 1;
+	}
 	#endregion
 
 	#region PrivateMethod
-	private void Awake()
-	{
-		if (instance == null)
-			instance = this;
-	}
-	private void Update()
-	{
-		// TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		if(Input.GetKeyDown(KeyCode.P))
-		{
-			SetPlayer1(TEST);
-			SetPlayer2(TEST);
-			CameraController.instance.PlayerChasingStart();
-		}
-		// TESTEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	}
 	private Vector2 GetRandomSafePositionToSpawn()
 	{
 		Vector2 result = new Vector2(0, MAP_HEIGHT);

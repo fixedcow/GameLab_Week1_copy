@@ -9,6 +9,7 @@ public abstract class Character : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
+	private PlayerManager owner;
 	protected Rigidbody2D rb;
 	protected Animator anim;
 	[SerializeField] protected ParticleSystem dustTrail;
@@ -24,6 +25,7 @@ public abstract class Character : MonoBehaviour
 	#endregion
 
 	#region PublicMethod
+	public void SetOwner(PlayerManager _owner) => owner = _owner;
 	public void SetColor(Color32 _main, Color32 _sub)
 	{
 		foreach(SpriteRenderer sr in mainColorPart)
@@ -75,8 +77,9 @@ public abstract class Character : MonoBehaviour
 	}
 	public void Dead()
 	{
+		CameraController.instance.SmashShake();
 		rb.velocity = Vector2.zero;
-		CharacterSpawner.instance.Respawn(this);
+		owner.PlayerDead();
 	}
 	public abstract void Command1();
 	public abstract void Command2();
@@ -96,7 +99,10 @@ public abstract class Character : MonoBehaviour
 	private void CheckGround()
 	{
 		if (rb.velocity.y > 0)
+		{
+			anim.SetBool("hang", false);
 			return;
+		}
 
 		bool isGround = false;
 		bool isHang = false;

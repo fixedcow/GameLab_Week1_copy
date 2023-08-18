@@ -18,12 +18,12 @@ public class UILifeCountText : MonoBehaviour
 	{
 		if(playAnimation == true)
 			anim.Play("LifeCountDamage");
-		txt.text =count.ToString();
+		txt.text = "x" + count.ToString();
 	}
 	public void Print(int count)
 	{
 		anim.Play("LifeCountDamage");
-		txt.text = "x " + count.ToString();
+		txt.text = "x" + count.ToString();
 	}
 	#endregion
 

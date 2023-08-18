@@ -7,13 +7,15 @@ public class GameManager : MonoBehaviour
 {
 	#region PublicVariables
 	public static GameManager instance;
+	public PlayerManager player1;
+	public PlayerManager player2;
 	public UnityEvent onGameTutorial;
 	public UnityEvent onGameStart;
 	public UnityEvent onGameEnd;
-	public UnityEvent onMainScreen;
-    public UnityEvent offMainScreen;
-	public UnityEvent onVictoryScreen;
-    public UnityEvent offVictoryScreen;
+
+	//TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	public GameObject characterPrefab;
+	//TESTEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #endregion
 
     #region PrivateVariables
@@ -36,31 +38,31 @@ public class GameManager : MonoBehaviour
 	public void GameEnd()
 	{
 		onGameEnd.Invoke();
-        onVictoryScreen.Invoke();
     }
+	#endregion
 
-	public void OnMainScreen()
+	#region PrivateMethod
+	private void Start()
 	{
-		onMainScreen.Invoke();
+		player1.SetFirstSpawnPoint(-5);
+		player2.SetFirstSpawnPoint(5);
+		player1.Initialize();
+		player2.Initialize();
 	}
-
-    public void OffMainScreen()
-    {
-        offMainScreen.Invoke();
-    }
-
-	public void OnVictoryScreen()
+	private void Update()
 	{
-		onVictoryScreen.Invoke();
-    }
-
-	public void OffVictoryScreen()
-	{
-		offVictoryScreen.Invoke();
-		onMainScreen.Invoke();
+		//TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			player1.SpawnPlayer(characterPrefab);
+			player2.SpawnPlayer(characterPrefab);
+			player1.Initialize();
+			player2.Initialize();
+			CameraController.instance.SetPlayer(player1.character.transform, player2.character.transform);
+			Indicator.instance.SetPlayer(player1.character.transform, player2.character.transform);
+			GameStart();
+		}
+		//TESTEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
-    #endregion
-
-    #region PrivateMethod
-    #endregion
+	#endregion
 }
