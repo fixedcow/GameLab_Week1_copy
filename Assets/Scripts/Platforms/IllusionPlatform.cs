@@ -10,6 +10,8 @@ public class IllusionPlatform : Platform
 	#region PrivateVariables
 	private Animator anim;
 	private Collider2D col;
+
+	[SerializeField] private float reswpawnTime;
 	#endregion
 
 	#region PublicMethod
@@ -34,7 +36,8 @@ public class IllusionPlatform : Platform
 	{
 		col.enabled = false;
 		gameObject.layer = LayerMask.NameToLayer("Default");
-		Invoke(nameof(Recall), 3f);
+		reswpawnTime = Mathf.Clamp(reswpawnTime, 3, float.MaxValue);
+		Invoke(nameof(Recall), reswpawnTime - 3);
 	}
 	#endregion
 

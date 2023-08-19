@@ -85,6 +85,10 @@ public abstract class Character : MonoBehaviour
 	public abstract void Command1();
 	public abstract void Command2();
 	public abstract void Command3();
+	public void Bounce(Vector2 direction, float magnitude)
+	{
+		rb.velocity = direction * magnitude;
+	}
 	#endregion
 
 	#region PrivateMethod
