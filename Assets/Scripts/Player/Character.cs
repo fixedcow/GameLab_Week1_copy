@@ -64,9 +64,9 @@ public abstract class Character : MonoBehaviour
 			transform.Translate(_direction * moveSpeed * Vector2.right * Time.deltaTime);
 		transform.localScale = new Vector3(_direction, 1, 1);
 	}
-	public void Fall(bool b)
+	public void Fall()
 	{
-		tryToFall = b;
+		tryToFall = true;
 	}
 	public void Jump()
 	{
@@ -151,6 +151,11 @@ public abstract class Character : MonoBehaviour
 		if (hitGround.collider != null)
 		{
 			isGround = true;
+			tryToFall = false;
+			if(rb.velocity.y < 0)
+			{
+				rb.velocity = new Vector2(rb.velocity.x, 0);
+			}
 			if (hitGround.collider.gameObject.layer == LayerMask.NameToLayer("Slime"))
 			{
 				canJump = false;

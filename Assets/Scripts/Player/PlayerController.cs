@@ -41,11 +41,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if(Input.GetKeyDown(fall))
 		{
-			character.Fall(true);
-		}
-		else if(Input.GetKeyUp(fall))
-		{
-			character.Fall(false);
+			character.Fall();
 		}
 		if (Input.GetKey(jump))
 		{
