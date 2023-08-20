@@ -72,8 +72,18 @@ public abstract class Character : MonoBehaviour
 		dustTrail.Play();
 		rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
 	}
-	public virtual void Hit(Vector2 _direction, float _magnitude)
+	public virtual void Hit(AttackData from, Vector2 _direction, float _magnitude)
 	{
+		if(from.GetAttackType() == AttackData.EType.smash)
+		{
+			CameraController.instance.SmashShake();
+			EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.smash, transform.position, Vector2.zero);
+		}
+		else
+		{
+			CameraController.instance.AttackShake();
+			EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.attack, transform.position, Vector2.zero);
+		}
 		canAct = false;
 		anim.SetTrigger("hit");
 		rb.velocity = _magnitude * _direction;
@@ -85,7 +95,10 @@ public abstract class Character : MonoBehaviour
 	{
 		CameraController.instance.DeadShake();
 		Vector2 direction = (CameraController.instance.transform.position - transform.position).normalized;
-		EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.dead, transform.position, direction);
+		if(owner == GameManager.instance.player1)
+			EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.player1Dead, transform.position, direction);
+		else
+			EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.player2Dead, transform.position, direction);
 		rb.velocity = Vector2.zero;
 		owner.PlayerDead();
 	}

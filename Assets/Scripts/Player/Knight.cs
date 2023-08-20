@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class Knight : Character
 {
@@ -9,6 +10,7 @@ public class Knight : Character
 
 	#region PrivateVariables
 	[SerializeField] private Animator counterAnim;
+	[SerializeField] private KnightCounter counterData;
 	#endregion
 
 	#region PublicMethod
@@ -35,6 +37,16 @@ public class Knight : Character
 			return;
 		canAct = false;
 		anim.SetTrigger("command3");
+	}
+	public override void Hit(AttackData from, Vector2 _direction, float _magnitude)
+	{
+		if(IsAnimationStateName("Command3") == true && from.GetAttackType() == AttackData.EType.attack)
+		{
+			PrintCounterSuccess();
+			counterData.CounterAttack(from.GetSource());
+		}
+		else
+			base.Hit(from, _direction, _magnitude);
 	}
 	#endregion
 

@@ -16,7 +16,8 @@ public class EffectManager : MonoBehaviour
 	{
 		attack = 0,
 		smash = 1,
-		dead = 2
+		player1Dead = 2,
+		player2Dead = 3,
 	}
 	#endregion
 	#region PrivateVariables
