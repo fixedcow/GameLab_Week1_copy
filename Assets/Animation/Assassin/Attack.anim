@@ -63,16 +63,16 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.05
-        value: {x: 1.33, y: -0.44, z: 0}
-        inSlope: {x: 3.0857112, y: 0, z: 0}
-        outSlope: {x: 3.0857112, y: 0, z: 0}
+        value: {x: 1, y: -0.44, z: 0}
+        inSlope: {x: 3.4285712, y: 0, z: 0}
+        outSlope: {x: 3.4285712, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.11666667
-        value: {x: 1.42, y: -0.44, z: 0}
+        value: {x: 1.1, y: -0.44, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -311,16 +311,16 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.05
-        value: 1.33
-        inSlope: 3.0857112
-        outSlope: 3.0857112
+        value: 1
+        inSlope: 3.4285712
+        outSlope: 3.4285712
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.11666667
-        value: 1.42
+        value: 1.1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1020,4 +1020,11 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.05
+    functionName: AttackEnemyInArea
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

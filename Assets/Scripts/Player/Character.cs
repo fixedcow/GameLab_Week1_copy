@@ -23,6 +23,7 @@ public abstract class Character : MonoBehaviour
 	protected bool canJump = true;
 	protected bool canAttack = true;
 	protected bool canAct = true;
+	private bool tryToFall = false;
 	#endregion
 
 	#region PublicMethod
@@ -62,6 +63,10 @@ public abstract class Character : MonoBehaviour
 		if(wall.collider == null && groundR.collider == null)
 			transform.Translate(_direction * moveSpeed * Vector2.right * Time.deltaTime);
 		transform.localScale = new Vector3(_direction, 1, 1);
+	}
+	public void Fall(bool b)
+	{
+		tryToFall = b;
 	}
 	public void Jump()
 	{
@@ -166,21 +171,24 @@ public abstract class Character : MonoBehaviour
 			isGround = false;
 		}
 
-		RaycastHit2D hitCliff = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 0.85f, 1 << LayerMask.NameToLayer("Ground"));
-		Debug.DrawRay(transform.position, Vector2.right * 0.8f * transform.localScale.x, Color.red);
+		if(tryToFall == false)
+		{
+			RaycastHit2D hitCliff = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 0.85f, 1 << LayerMask.NameToLayer("Ground"));
+			Debug.DrawRay(transform.position, Vector2.right * 0.8f * transform.localScale.x, Color.red);
 
-		if(hitCliff.collider != null)
-		{
-			isHang = true;
-			Platform p;
-			if (hitCliff.collider.TryGetComponent(out p))
+			if (hitCliff.collider != null)
 			{
-				p.Touched();
+				isHang = true;
+				Platform p;
+				if (hitCliff.collider.TryGetComponent(out p))
+				{
+					p.Touched();
+				}
 			}
-		}
-		else
-		{
-			isHang = false;
+			else
+			{
+				isHang = false;
+			}
 		}
 
 		if(isGround == false && isHang == true)

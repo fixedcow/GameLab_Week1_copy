@@ -10,7 +10,8 @@ public class EffectManager : MonoBehaviour
 	public static EffectManager instance;
 	public enum EEffectType
 	{
-		smash = 0
+		smash = 0,
+		absoluteKill = 1
 	}
 	public enum EParticleEffectType
 	{

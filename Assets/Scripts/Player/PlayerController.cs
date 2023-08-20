@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Character character;
 	[SerializeField] private KeyCode leftMove;
 	[SerializeField] private KeyCode rightMove;
+	[SerializeField] private KeyCode fall;
 	[SerializeField] private KeyCode jump;
 	[SerializeField] private KeyCode command1;
 	[SerializeField] private KeyCode command2;
@@ -38,7 +39,15 @@ public class PlayerController : MonoBehaviour
 		{
 			character.Move(1);
 		}
-		if (Input.GetKeyDown(jump))
+		if(Input.GetKeyDown(fall))
+		{
+			character.Fall(true);
+		}
+		else if(Input.GetKeyUp(fall))
+		{
+			character.Fall(false);
+		}
+		if (Input.GetKey(jump))
 		{
 			character.Jump();
 		}

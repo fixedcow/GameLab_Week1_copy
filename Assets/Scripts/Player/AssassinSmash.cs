@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnightSmash : AttackData
+public class AssassinSmash : AttackData
 {
 	#region PublicVariables
 	#endregion
@@ -17,11 +17,11 @@ public class KnightSmash : AttackData
 	#region PrivateMethod
 	private void SmashEnemyInArea()
 	{
-		if(CheckAttack() == true)
+		if (CheckAttack() == true)
 		{
 			float dirMult = transform.parent.localScale.x;
 			Vector2 drawPosition = (Vector2)transform.position + dirMult * effectPositionX * Vector2.right;
-			EffectManager.instance.CallEffect(EffectManager.EEffectType.smash, drawPosition, dirMult);
+			EffectManager.instance.CallEffect(EffectManager.EEffectType.absoluteKill, drawPosition, dirMult);
 		}
 	}
 	#endregion

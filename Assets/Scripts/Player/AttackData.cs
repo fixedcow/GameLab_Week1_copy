@@ -28,11 +28,12 @@ public abstract class AttackData : MonoBehaviour
 	#endregion
 
 	#region PrivateMethod
-	protected virtual void CheckAttack()
+	protected virtual bool CheckAttack()
 	{
 		float dirMult = transform.parent.localScale.x;
-		Collider2D[] cols = Physics2D.OverlapAreaAll(transform.position + (dirMult * pointA)
-			, transform.position + (dirMult * pointB), 1 << LayerMask.NameToLayer("Character"));
+		Vector2 a = transform.position + (dirMult * pointA);
+		Vector2 b = transform.position + (dirMult * pointB);
+		Collider2D[] cols = Physics2D.OverlapAreaAll(a, b, 1 << LayerMask.NameToLayer("Character"));
 		if (cols.Length != 0)
 		{
 			foreach (Collider2D col in cols)
@@ -42,9 +43,11 @@ public abstract class AttackData : MonoBehaviour
 				if (c != null)
 				{
 					Attack(c, dirMult);
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 	protected virtual void Attack(Character _target, float dirMult)
 	{
