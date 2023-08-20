@@ -16,6 +16,7 @@ public abstract class Character : MonoBehaviour
 	[SerializeField] private List<SpriteRenderer> mainColorPart = new List<SpriteRenderer>();
 	[SerializeField] private List<SpriteRenderer> subColorPart = new List<SpriteRenderer>();
 
+	[SerializeField] private const float respawnInvicibleTime = 0.6f;
 	[SerializeField] protected float moveSpeed;
 	[SerializeField] protected float jumpForce;
 	protected bool canMove = true;
@@ -45,6 +46,11 @@ public abstract class Character : MonoBehaviour
 	public void SetCanAct()
 	{
 		canAct = true;
+	}
+	public void Invincible()
+	{
+		SetLayerDefault();
+		Invoke(nameof(SetLayerCharacter), respawnInvicibleTime);
 	}
 	public void Move(int _direction)
 	{
@@ -78,7 +84,8 @@ public abstract class Character : MonoBehaviour
 	public void Dead()
 	{
 		CameraController.instance.DeadShake();
-		EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.dead, transform.position);
+		Vector2 direction = (CameraController.instance.transform.position - transform.position).normalized;
+		EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.dead, transform.position, direction);
 		rb.velocity = Vector2.zero;
 		owner.PlayerDead();
 	}
@@ -100,6 +107,14 @@ public abstract class Character : MonoBehaviour
 	protected virtual void Update()
 	{
 		CheckGround();
+	}
+	private void SetLayerDefault()
+	{
+		gameObject.layer = LayerMask.NameToLayer("Default");
+	}
+	private void SetLayerCharacter()
+	{
+		gameObject.layer = LayerMask.NameToLayer("Character");
 	}
 	private void CheckGround()
 	{

@@ -33,6 +33,7 @@ public class CharacterSpawner : MonoBehaviour
 	{
 		Vector2 position = GetRandomSafePositionToSpawn();
 		_target.transform.position = position;
+		_target.Invincible();
 	}
 	public void SetFirstSpawnPoint(int xPos)
 	{

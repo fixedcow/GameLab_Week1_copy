@@ -35,7 +35,7 @@ public class KnightAttack : MonoBehaviour
 				if(c.IsAnimationStateName("Counter") == false)
 				{
 					c.Hit(dirMult * direction.normalized, magnitude);
-					EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.attack, c.transform.position);
+					EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.attack, c.transform.position, direction.normalized);
 				}
 				else
 				{
@@ -43,7 +43,7 @@ public class KnightAttack : MonoBehaviour
 					c.TryGetComponent(out k);
 					k.PrintCounterSuccess();
 					self.Hit(-dirMult * direction.normalized, magnitude);
-					EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.attack, self.transform.position);
+					EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.attack, self.transform.position, direction.normalized);
 				}
 			}
 		}

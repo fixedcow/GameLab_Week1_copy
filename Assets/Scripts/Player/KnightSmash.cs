@@ -32,7 +32,7 @@ public class KnightSmash : MonoBehaviour
 			{
 				CameraController.instance.SmashShake();
 				EffectManager.instance.CallEffect(EffectManager.EEffectType.smash, transform.position + Vector3.right * dirMult * 3, dirMult);
-				EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.smash, c.transform.position);
+				EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.smash, c.transform.position, direction.normalized);
 				c.Hit(new Vector2(dirMult * direction.x, direction.y).normalized, magnitude);
 			}
 		}

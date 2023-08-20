@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EffectManager : MonoBehaviour
@@ -29,28 +31,29 @@ public class EffectManager : MonoBehaviour
 			instance = this;
 		}
 	}
-	public void CallEffect(EEffectType type, Vector2 position, float _rotMult)
+	public void CallEffect(EEffectType _type, Vector2 _position, float _rotMult)
 	{
-		GameObject current = GetEffectFromList(type);
-		EffectBundle bundle = effects[(int)type];
+		GameObject current = GetEffectFromList(_type);
+		EffectBundle bundle = effects[(int)_type];
 
 		if(current == null)
 		{
-			current = Instantiate(bundle.prefab, position, Quaternion.identity, transform) as GameObject;
+			current = Instantiate(bundle.prefab, _position, Quaternion.identity, transform) as GameObject;
 			bundle.list.Add(current);
             current.transform.localScale = new Vector3(_rotMult, 1, 1);
         }
 		else
 		{
-			current.transform.position = position;
+			current.transform.position = _position;
             current.transform.localScale = new Vector3(_rotMult, 1, 1);
             current.SetActive(true);
 		}
 	}
-	public void CallParticleEffect(EParticleEffectType type, Vector2 position)
+	public void CallParticleEffect(EParticleEffectType _type, Vector2 _position, Vector2 _direction)
 	{
-		ParticleSystem current = particles[(int)type];
-		current.gameObject.transform.position = position;
+		ParticleSystem current = particles[(int)_type];
+		current.gameObject.transform.position = _position;
+		current.transform.rotation = Quaternion.FromToRotation(Vector3.up, CameraController.instance.transform.position - (Vector3)_position);
 		current.Play();
 	}
 	#endregion

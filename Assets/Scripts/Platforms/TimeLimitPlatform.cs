@@ -19,6 +19,8 @@ public class TimeLimitPlatform : Platform
 	public override void Initialize()
 	{
 		rb.bodyType = RigidbodyType2D.Kinematic;
+		rb.angularVelocity = 0;
+		transform.rotation = Quaternion.Euler(0, 0, 0);
 		transform.position = originPosition;
 		gameObject.layer = LayerMask.NameToLayer("Ground");
 		col.enabled = true;
