@@ -124,17 +124,9 @@ public abstract class Character : MonoBehaviour
 	}
 	protected virtual void Update()
 	{
-		CheckGround();
+		CheckPhysics();
 	}
-	private void SetLayerDefault()
-	{
-		gameObject.layer = LayerMask.NameToLayer("Default");
-	}
-	private void SetLayerCharacter()
-	{
-		gameObject.layer = LayerMask.NameToLayer("Character");
-	}
-	private void CheckGround()
+	private void CheckPhysics()
 	{
 		if (rb.velocity.y > 0)
 		{
@@ -145,14 +137,20 @@ public abstract class Character : MonoBehaviour
 		bool isGround = false;
 		bool isHang = false;
 
+		isGround = CheckGround();
+		isHang = CheckCliff();
+
+		ActByPhysics(isGround, isHang);
+	}
+	private bool CheckGround()
+	{
 		RaycastHit2D hitGround = Physics2D.Raycast(transform.position - transform.localScale.x * new Vector3(0.15f, 0), Vector2.down, 0.7f, 1 << LayerMask.NameToLayer("Ground"));
 		Debug.DrawRay(transform.position - transform.localScale.x * new Vector3(0.15f, 0), Vector2.down * 0.7f, Color.red);
 
 		if (hitGround.collider != null)
 		{
-			isGround = true;
 			tryToFall = false;
-			if(rb.velocity.y < 0)
+			if (rb.velocity.y < 0)
 			{
 				rb.velocity = new Vector2(rb.velocity.x, 0);
 			}
@@ -165,38 +163,40 @@ public abstract class Character : MonoBehaviour
 				canJump = true;
 			}
 			Platform p;
-			if(hitGround.collider.TryGetComponent(out p))
+			if (hitGround.collider.TryGetComponent(out p))
 			{
 				p.Touched();
 			}
+			return true;
 		}
 		else
 		{
 			Invoke(nameof(CantJumpForInvoke), 0.1f);
-			isGround = false;
+			return false;
 		}
-
-		if(tryToFall == false)
+	}
+	private bool CheckCliff()
+	{
+		if (tryToFall == false)
 		{
-			RaycastHit2D hitCliff = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 0.85f, 1 << LayerMask.NameToLayer("Ground"));
-			Debug.DrawRay(transform.position, Vector2.right * 0.8f * transform.localScale.x, Color.red);
+			RaycastHit2D hitCliff = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, 0.7f, 1 << LayerMask.NameToLayer("Ground"));
+			Debug.DrawRay(transform.position, Vector2.right * 0.7f * transform.localScale.x, Color.red);
 
 			if (hitCliff.collider != null)
 			{
-				isHang = true;
 				Platform p;
 				if (hitCliff.collider.TryGetComponent(out p))
 				{
 					p.Touched();
 				}
-			}
-			else
-			{
-				isHang = false;
+				return true;
 			}
 		}
-
-		if(isGround == false && isHang == true)
+		return false;
+	}
+	private void ActByPhysics(bool _isGround, bool _isHang)
+	{
+		if (_isGround == false && _isHang == true)
 		{
 			anim.SetBool("hang", true);
 			anim.ResetTrigger("command1");
@@ -212,6 +212,14 @@ public abstract class Character : MonoBehaviour
 		{
 			anim.SetBool("hang", false);
 		}
+	}
+	private void SetLayerDefault()
+	{
+		gameObject.layer = LayerMask.NameToLayer("Default");
+	}
+	private void SetLayerCharacter()
+	{
+		gameObject.layer = LayerMask.NameToLayer("Character");
 	}
 	private void CantJumpForInvoke()
 	{

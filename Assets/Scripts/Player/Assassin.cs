@@ -10,7 +10,7 @@ public class Assassin : Character
 	#region PrivateVariables
 	[SerializeField] private ParticleSystem dashParticle;
 	private bool canDash = true;
-	[SerializeField] private float dashPower;
+	[SerializeField] private float dashDistance;
 	[SerializeField] private float dashDuration;
 	[SerializeField] private float dashCooldown;
 	#endregion
@@ -44,7 +44,26 @@ public class Assassin : Character
 	{
 		canDash = false;
 		dashParticle.Play();
-		transform.position += Vector3.right * 3;
+		float dirMult = transform.localScale.x;
+		Vector2 origin = (Vector2)transform.position - Vector2.down * 0.1f;
+		Vector2 direction = Vector2.right * dirMult;
+		RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, dashDistance
+			, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("Character"));
+		Debug.DrawRay(origin, direction * dashDistance, Color.red);
+		foreach (RaycastHit2D h in hits)
+		{
+			Debug.Log(h.collider.gameObject);
+		}
+		if(hits.Length > 1)
+		{
+			transform.position = hits[1].point - Vector2.right * dirMult;
+		}
+		else
+		{
+			transform.position = (Vector2)transform.position + dirMult * Vector2.right * dashDistance;
+		}
+
+		//TODO!!!!!!!!!!!!!!! 대쉬 만들기
 		//rb.bodyType = RigidbodyType2D.Kinematic;
 		//rb.velocity = transform.localScale.x * Vector2.right * dashPower;
 		Invoke(nameof(DashFinish), dashDuration);

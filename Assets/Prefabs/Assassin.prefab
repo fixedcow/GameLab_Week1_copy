@@ -345,7 +345,7 @@ MonoBehaviour:
   moveSpeed: 8
   jumpForce: 14
   dashParticle: {fileID: 7116885905025953240}
-  dashPower: 32
+  dashDistance: 5
   dashDuration: 0.12
   dashCooldown: 1.2
 --- !u!50 &2228291600703436757
