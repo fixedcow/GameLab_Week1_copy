@@ -47,6 +47,7 @@ public class Assassin : Character
 		float dirMult = transform.localScale.x;
 		Vector2 origin = (Vector2)transform.position - Vector2.down * 0.1f;
 		Vector2 direction = Vector2.right * dirMult;
+		Vector2 destination = transform.position;
 		RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, dashDistance
 			, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("Character"));
 		Debug.DrawRay(origin, direction * dashDistance, Color.red);
@@ -56,23 +57,21 @@ public class Assassin : Character
 		}
 		if(hits.Length > 1)
 		{
-			transform.position = hits[1].point - Vector2.right * dirMult;
+			destination = hits[1].point - Vector2.right * dirMult;
 		}
 		else
 		{
-			transform.position = (Vector2)transform.position + dirMult * Vector2.right * dashDistance;
+			destination = (Vector2)transform.position + dirMult * Vector2.right * dashDistance;
 		}
-
-		//TODO!!!!!!!!!!!!!!! 대쉬 만들기
-		//rb.bodyType = RigidbodyType2D.Kinematic;
-		//rb.velocity = transform.localScale.x * Vector2.right * dashPower;
+		rb.bodyType = RigidbodyType2D.Kinematic;
+		transform.position = destination;
 		Invoke(nameof(DashFinish), dashDuration);
 		Invoke(nameof(DashCooldown), dashCooldown);
 	}
 	private void DashFinish()
 	{
-		rb.bodyType = RigidbodyType2D.Dynamic;
 		rb.velocity = Vector2.zero;
+		rb.bodyType = RigidbodyType2D.Dynamic;
 		dashParticle.Stop();
 	}
 	private void DashCooldown()

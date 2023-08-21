@@ -502,6 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceMult: 20
+  randomMult: 0.1
 --- !u!1 &1280517855437976977
 GameObject:
   m_ObjectHideFlags: 0

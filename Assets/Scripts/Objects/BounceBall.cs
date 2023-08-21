@@ -10,6 +10,7 @@ public class BounceBall : MonoBehaviour
 	#region PrivateVariables
 	private Animator anim;
 	[SerializeField] private float bounceMult;
+	[SerializeField] private float randomMult;
 	#endregion
 
 	#region PublicMethod
@@ -28,7 +29,8 @@ public class BounceBall : MonoBehaviour
 		Character c = collision.GetComponent<Character>();
 		if (c != null)
 		{
-			Vector2 direction = (c.transform.position - transform.position).normalized;
+			Vector3 rand = new Vector2(Random.Range(-randomMult, randomMult), Random.Range(-randomMult, randomMult));
+			Vector2 direction = (c.transform.position - transform.position + rand).normalized;
 			anim.Play("Bounce");
 			c.Bounce(direction, bounceMult);
 		}

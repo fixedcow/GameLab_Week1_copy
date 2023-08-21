@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -24,6 +25,7 @@ public abstract class Character : MonoBehaviour
 	protected bool canAttack = true;
 	protected bool canAct = true;
 	private bool tryToFall = false;
+	private bool isOnAir = false;
 	#endregion
 
 	#region PublicMethod
@@ -74,7 +76,6 @@ public abstract class Character : MonoBehaviour
 			return;
 
 		canJump = false;
-		dustTrail.Play();
 		rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
 	}
 	public virtual void Hit(AttackData from, Vector2 _direction, float _magnitude)
@@ -144,24 +145,26 @@ public abstract class Character : MonoBehaviour
 	}
 	private bool CheckGround()
 	{
-		RaycastHit2D hitGround = Physics2D.Raycast(transform.position - transform.localScale.x * new Vector3(0.15f, 0), Vector2.down, 0.7f, 1 << LayerMask.NameToLayer("Ground"));
+		RaycastHit2D hitGround = Physics2D.Raycast(transform.position - transform.localScale.x * new Vector3(0.15f, 0)
+			, Vector2.down, 0.7f, 1 << LayerMask.NameToLayer("Ground"));
 		Debug.DrawRay(transform.position - transform.localScale.x * new Vector3(0.15f, 0), Vector2.down * 0.7f, Color.red);
 
 		if (hitGround.collider != null)
 		{
 			tryToFall = false;
-			if (rb.velocity.y < 0)
-			{
-				rb.velocity = new Vector2(rb.velocity.x, 0);
-			}
-			if (hitGround.collider.gameObject.layer == LayerMask.NameToLayer("Slime"))
-			{
-				canJump = false;
-			}
-			else if (hitGround.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+			isOnAir = false;
+
+			if (hitGround.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
 			{
 				canJump = true;
+				if(dustTrail.isEmitting == false)
+				{
+					dustTrail.Play();
+					Debug.Log(dustTrail.isEmitting);
+				}
+				ResetYVelocityWhileOnGround();
 			}
+
 			Platform p;
 			if (hitGround.collider.TryGetComponent(out p))
 			{
@@ -171,8 +174,24 @@ public abstract class Character : MonoBehaviour
 		}
 		else
 		{
-			Invoke(nameof(CantJumpForInvoke), 0.1f);
+			if(isOnAir == false)
+			{
+				isOnAir = true;
+				if (dustTrail.isEmitting == true)
+				{
+					dustTrail.Stop();
+					Debug.Log(dustTrail.isEmitting);
+				}
+				Invoke(nameof(CantJumpForInvoke), 0.1f);
+			}
 			return false;
+		}
+	}
+	private void ResetYVelocityWhileOnGround()
+	{
+		if (rb.velocity.y < 0)
+		{
+			rb.velocity = new Vector2(rb.velocity.x, 0);
 		}
 	}
 	private bool CheckCliff()
