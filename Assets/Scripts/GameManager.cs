@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,10 +14,7 @@ public class GameManager : MonoBehaviour
 	public UnityEvent onGameStart;
 	public UnityEvent onGameEnd;
 
-	//TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	public GameObject knight;
-	public GameObject assassin;
-	//TESTEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	private GameObject stage;
     #endregion
 
     #region PrivateVariables
@@ -27,6 +25,13 @@ public class GameManager : MonoBehaviour
 	{
 		if (instance == null)
 			instance = this;
+	}
+	public void StartBattle()
+	{
+		StagePrimeManager.instance.StartStage(stage);
+		CameraController.instance.SetPlayer(player1.character.transform, player2.character.transform);
+		Indicator.instance.SetPlayer(player1.character.transform, player2.character.transform);
+		GameStart();
 	}
 	public void TutorialStart()
 	{
@@ -40,30 +45,26 @@ public class GameManager : MonoBehaviour
 	{
 		onGameEnd.Invoke();
     }
+	public void SetStage(GameObject _stage) => stage = _stage;
 	#endregion
 
 	#region PrivateMethod
 	private void Start()
 	{
+		UIController.instance.HideUI();
 		player1.SetFirstSpawnPoint(-5);
 		player2.SetFirstSpawnPoint(5);
 		player1.Initialize();
 		player2.Initialize();
+		UISelectSceneStage.instance.SelectSceneStart();
 	}
 	private void Update()
 	{
-		//TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		if (Input.GetKeyDown(KeyCode.P))
+		if(Input.GetKeyDown(KeyCode.Alpha0))
 		{
-			player1.SpawnPlayer(knight);
-			player2.SpawnPlayer(assassin);
-			player1.Initialize();
-			player2.Initialize();
-			CameraController.instance.SetPlayer(player1.character.transform, player2.character.transform);
-			Indicator.instance.SetPlayer(player1.character.transform, player2.character.transform);
-			GameStart();
+			GameEnd();
+			UISelectSceneStage.instance.SelectSceneStart();
 		}
-		//TESTEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 	#endregion
 }

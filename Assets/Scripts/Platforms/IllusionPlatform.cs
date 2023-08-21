@@ -8,8 +8,8 @@ public class IllusionPlatform : Platform
 	#endregion
 
 	#region PrivateVariables
-	private Animator anim;
-	private Collider2D col;
+	[SerializeField] private Animator anim;
+	[SerializeField] private Collider2D col;
 
 	[SerializeField] private float reswpawnTime;
 	#endregion
@@ -42,10 +42,9 @@ public class IllusionPlatform : Platform
 	#endregion
 
 	#region PrivateMethod
-	private void Awake()
+	private void OnDisable()
 	{
-		TryGetComponent(out col);
-		TryGetComponent(out anim);
+		CancelInvoke(nameof(Recall));
 	}
 	#endregion
 }

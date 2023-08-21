@@ -8,7 +8,10 @@ public class IdleAnimation : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 		Character c = animator.transform.parent.GetComponent<Character>();
-		c.SetCanAct();
+		if(c != null)
+		{
+			c.SetCanAct();
+		}
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

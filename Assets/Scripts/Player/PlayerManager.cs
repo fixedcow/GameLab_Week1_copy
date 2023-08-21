@@ -26,11 +26,15 @@ public class PlayerManager : MonoBehaviour
 		SetCharacter(c);
 		c.SetOwner(this);
 	}
+	public void GameEndDeactivePlayer()
+	{
+		Destroy(character.gameObject);
+	}
 	public void PlayerDead()
 	{
 		if (data.SubLife() <= 0)
 		{
-			// GameManager.instance.GameEnd();
+			GameManager.instance.GameEnd();
 		}
 		else
 		{

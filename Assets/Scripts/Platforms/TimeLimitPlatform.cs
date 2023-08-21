@@ -9,10 +9,10 @@ public class TimeLimitPlatform : Platform
 
 	#region PrivateVariables
 	[SerializeField] private float lifeTime;
-	private Animator anim;
-	private Rigidbody2D rb;
-	private Collider2D col;
-	private Vector2 originPosition;
+	[SerializeField] private Animator anim;
+	[SerializeField] private Rigidbody2D rb;
+	[SerializeField] private Collider2D col;
+	[SerializeField] private Vector2 originPosition;
 	#endregion
 
 	#region PublicMethod
@@ -45,16 +45,14 @@ public class TimeLimitPlatform : Platform
 	#endregion
 
 	#region PrivateMethod
-	private void Awake()
-	{
-        TryGetComponent(out anim);
-		TryGetComponent(out rb);
-		TryGetComponent(out col);
-        originPosition = transform.position;
-    }
 	private void Deactive()
 	{
 		gameObject.SetActive(false);
+	}
+	private void OnDisable()
+	{
+		CancelInvoke(nameof(WarnToDrop));
+		CancelInvoke(nameof(Deactive));
 	}
 	#endregion
 }

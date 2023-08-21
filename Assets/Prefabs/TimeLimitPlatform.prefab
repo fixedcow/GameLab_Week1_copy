@@ -289,6 +289,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0
+  anim: {fileID: 6009659978619067942}
+  rb: {fileID: 6009659978619067940}
+  col: {fileID: 9098603636674733592}
+  originPosition: {x: 0, y: 0}
 --- !u!1 &9098603636708951595
 GameObject:
   m_ObjectHideFlags: 0

@@ -501,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb69cc47020b1c4eb1918f1585e2a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1280517855421613735}
   bounceMult: 28
   randomMult: 0.1
 --- !u!1 &1280517855437976977

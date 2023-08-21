@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThunderPlatformManager : MonoBehaviour
+public class Stage4Manager : StageManager
 {
 	#region PublicVariables
 	#endregion
@@ -18,7 +18,7 @@ public class ThunderPlatformManager : MonoBehaviour
 	#endregion
 
 	#region PublicMethod
-	public void Initialize()
+	public override void Initialize()
 	{
 		thunderTimer = 0;
 	}

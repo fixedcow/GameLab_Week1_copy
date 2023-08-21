@@ -2,32 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UISelectTarget : MonoBehaviour
+public abstract class UISelectTarget : MonoBehaviour
 {
 	#region PublicVariables
 	#endregion
 
 	#region PrivateVariables
-	[SerializeField] private GameObject data;
+	[SerializeField] protected GameObject data;
 	#endregion
 
 	#region PublicMethod
-	public void AddHighlight()
-	{
-
-	}
-	public void RemoveHighlight()
-	{
-
-	}
-	public void LockIn()
-	{
-
-	}
-	public void LockOut()
-	{
-
-	}
+	public GameObject GetResult() => data;
+	public abstract void HighlightOn();
+	public abstract void HighlightOff();
+	public abstract void LockIn();
+	public abstract void LockOut();
 	#endregion
 
 	#region PrivateMethod

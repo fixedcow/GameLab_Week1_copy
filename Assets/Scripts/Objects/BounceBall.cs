@@ -8,7 +8,7 @@ public class BounceBall : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
-	private Animator anim;
+	[SerializeField ]private Animator anim;
 	[SerializeField] private float bounceMult;
 	[SerializeField] private float randomMult;
 	#endregion
@@ -17,10 +17,6 @@ public class BounceBall : MonoBehaviour
 	#endregion
 
 	#region PrivateMethod
-	private void Awake()
-	{
-		TryGetComponent(out anim);
-	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision == null)

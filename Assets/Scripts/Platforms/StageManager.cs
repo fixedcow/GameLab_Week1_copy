@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UISelectStage : MonoBehaviour
+public abstract class StageManager : MonoBehaviour
 {
 	#region PublicVariables
 	#endregion
 
 	#region PrivateVariables
-	[SerializeField] private PlayerManager selector;
-	[SerializeField] private List<UISelectTarget> targets = new List<UISelectTarget>();
 	#endregion
 
 	#region PublicMethod
+	public abstract void Initialize();
 	#endregion
 
 	#region PrivateMethod
