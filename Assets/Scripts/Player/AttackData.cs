@@ -40,7 +40,7 @@ public abstract class AttackData : MonoBehaviour
 			{
 				Character c;
 				col.TryGetComponent(out c);
-				if (c != null)
+				if (c != null && c != source)
 				{
 					Attack(c, dirMult);
 					return true;
