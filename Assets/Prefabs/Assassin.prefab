@@ -343,10 +343,9 @@ MonoBehaviour:
   subColorPart:
   - {fileID: 2820978572304898428}
   moveSpeed: 8
-  jumpForce: 14
+  jumpForce: 16
   dashParticle: {fileID: 7116885905025953240}
   dashDistance: 5
-  dashDuration: 0.12
   dashCooldown: 1.2
 --- !u!50 &2228291600703436757
 Rigidbody2D:
@@ -361,7 +360,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 3
   m_Material: {fileID: 0}
@@ -1102,7 +1101,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1477,7 +1476,7 @@ ParticleSystem:
         m_RotationOrder: 4
   ShapeModule:
     serializedVersion: 6
-    enabled: 0
+    enabled: 1
     type: 5
     angle: 25
     length: 5
@@ -1486,7 +1485,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.1, y: 0.1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -5843,7 +5842,7 @@ MonoBehaviour:
   pointA: {x: 0.5, y: 0.5, z: 0}
   pointB: {x: 3, y: -0.5, z: 0}
   direction: {x: 1, y: 0.3}
-  magnitude: 9
+  magnitude: 10
 --- !u!114 &3102229039368691487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5861,7 +5860,7 @@ MonoBehaviour:
   pointA: {x: 0.5, y: 0.5, z: 0}
   pointB: {x: 3.5, y: -0.5, z: 0}
   direction: {x: 1, y: 0}
-  magnitude: 100
+  magnitude: 120
   effectPositionX: 4
 --- !u!1 &6600742952062948781
 GameObject:

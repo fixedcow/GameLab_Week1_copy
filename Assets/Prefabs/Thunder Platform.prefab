@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c1100a8ad555741965a1bdc7153df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceMagnitude: 24
+  bounceMagnitude: 35
   radius: 2
 --- !u!1 &4525724086433107529
 GameObject:

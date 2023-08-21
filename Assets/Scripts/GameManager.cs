@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
 	public UnityEvent onGameEnd;
 
 	//TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	public GameObject characterPrefab;
+	public GameObject knight;
+	public GameObject assassin;
 	//TESTEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #endregion
 
@@ -54,8 +55,8 @@ public class GameManager : MonoBehaviour
 		//TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if (Input.GetKeyDown(KeyCode.P))
 		{
-			player1.SpawnPlayer(characterPrefab);
-			player2.SpawnPlayer(characterPrefab);
+			player1.SpawnPlayer(knight);
+			player2.SpawnPlayer(assassin);
 			player1.Initialize();
 			player2.Initialize();
 			CameraController.instance.SetPlayer(player1.character.transform, player2.character.transform);

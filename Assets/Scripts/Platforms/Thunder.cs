@@ -11,6 +11,8 @@ public class Thunder : MonoBehaviour
 	private Animator anim;
 	[SerializeField] private float bounceMagnitude;
 	[SerializeField] private float radius;
+
+	private const float MIN_DISTANCE = 0.5f;
 	#endregion
 
 	#region PublicMethod
@@ -27,7 +29,9 @@ public class Thunder : MonoBehaviour
 			{
 				collider.TryGetComponent(out c);
 				Vector2 direction = (c.transform.position - transform.position).normalized;
-				c.Bounce(direction, bounceMagnitude);
+				float distance = Vector2.Distance(transform.position, c.transform.position);
+				distance = Mathf.Clamp(distance, MIN_DISTANCE, radius);
+				c.Bounce(direction, bounceMagnitude / distance);
 			}
 		}
 	}

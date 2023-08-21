@@ -1315,7 +1315,7 @@ MonoBehaviour:
   pointA: {x: 0.5, y: 0.5, z: 0}
   pointB: {x: 4, y: -0.5, z: 0}
   direction: {x: 1, y: 0.3}
-  magnitude: 9
+  magnitude: 12
 --- !u!114 &1222763868898226192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,7 +1333,7 @@ MonoBehaviour:
   pointA: {x: 0.5, y: 1.3, z: 0}
   pointB: {x: 5.5, y: -1.3, z: 0}
   direction: {x: 1, y: 0.6}
-  magnitude: 20
+  magnitude: 28
   effectPositionX: 4
 --- !u!114 &819056543109880151
 MonoBehaviour:
@@ -1352,7 +1352,7 @@ MonoBehaviour:
   pointA: {x: 0, y: 0, z: 0}
   pointB: {x: 0, y: 0, z: 0}
   direction: {x: 1, y: 0.3}
-  magnitude: 9
+  magnitude: 12
 --- !u!1 &4499776349908447390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,7 +1678,7 @@ MonoBehaviour:
   - {fileID: 9026106643215853866}
   - {fileID: 849375273871656394}
   moveSpeed: 7
-  jumpForce: 14
+  jumpForce: 16
   counterAnim: {fileID: 4015355647860865039}
   counterData: {fileID: 819056543109880151}
 --- !u!50 &8932966110394495427
@@ -1694,7 +1694,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 3
   m_Material: {fileID: 0}

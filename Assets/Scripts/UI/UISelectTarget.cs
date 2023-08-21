@@ -8,10 +8,11 @@ public class UISelectTarget : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
+	[SerializeField] private GameObject data;
 	#endregion
 
 	#region PublicMethod
-	public void PrintHightlight()
+	public void AddHighlight()
 	{
 
 	}

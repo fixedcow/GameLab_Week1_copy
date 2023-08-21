@@ -76,7 +76,7 @@ public abstract class Character : MonoBehaviour
 			return;
 
 		canJump = false;
-		rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
+		rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 	}
 	public virtual void Hit(AttackData from, Vector2 _direction, float _magnitude)
 	{
@@ -160,9 +160,8 @@ public abstract class Character : MonoBehaviour
 				if(dustTrail.isEmitting == false)
 				{
 					dustTrail.Play();
-					Debug.Log(dustTrail.isEmitting);
 				}
-				ResetYVelocityWhileOnGround();
+				//ResetYVelocityWhileOnGround();
 			}
 
 			Platform p;
@@ -180,7 +179,6 @@ public abstract class Character : MonoBehaviour
 				if (dustTrail.isEmitting == true)
 				{
 					dustTrail.Stop();
-					Debug.Log(dustTrail.isEmitting);
 				}
 				Invoke(nameof(CantJumpForInvoke), 0.1f);
 			}

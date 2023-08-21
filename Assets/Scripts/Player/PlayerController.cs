@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
 
 	#region PublicMethod
 	public void SetCharater(Character c) => character = c;
+	public KeyCode GetLeftMove() => leftMove;
+	public KeyCode GetRightMove() => rightMove;
+	public KeyCode GetCommand1() => command1;
+	public KeyCode GetCommand2() => command2;
 	#endregion
 
 	#region PrivateMethod

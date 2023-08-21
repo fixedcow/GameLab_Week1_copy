@@ -8,9 +8,8 @@ public class UISelectStage : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
-	[SerializeField] private UISelector player1;
-	[SerializeField] private UISelector player2;
-	[SerializeField] List<UISelectTarget> targets = new List<UISelectTarget>();
+	[SerializeField] private PlayerManager selector;
+	[SerializeField] private List<UISelectTarget> targets = new List<UISelectTarget>();
 	#endregion
 
 	#region PublicMethod

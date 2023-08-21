@@ -307,7 +307,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  characterPrefab: {fileID: 3200307968177994892, guid: a452a79448de24b408af9da6bb0d91f3, type: 3}
+  knight: {fileID: 5295662629142493850, guid: e27a843b037a9664fbd4fcd8b6f4c2cc, type: 3}
+  assassin: {fileID: 3200307968177994892, guid: a452a79448de24b408af9da6bb0d91f3, type: 3}
 --- !u!1001 &32109893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1155,7 +1156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &420975134
 Transform:
   m_ObjectHideFlags: 0
@@ -1208,7 +1209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &500253211
 Transform:
   m_ObjectHideFlags: 0

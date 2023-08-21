@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Assassin : Character
@@ -9,10 +10,12 @@ public class Assassin : Character
 
 	#region PrivateVariables
 	[SerializeField] private ParticleSystem dashParticle;
-	private bool canDash = true;
 	[SerializeField] private float dashDistance;
-	[SerializeField] private float dashDuration;
 	[SerializeField] private float dashCooldown;
+
+	private bool canDash = true;
+
+	private const float DASH_DURATION = 0.1f;
 	#endregion
 
 	#region PublicMethod
@@ -51,10 +54,6 @@ public class Assassin : Character
 		RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, dashDistance
 			, 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("Character"));
 		Debug.DrawRay(origin, direction * dashDistance, Color.red);
-		foreach (RaycastHit2D h in hits)
-		{
-			Debug.Log(h.collider.gameObject);
-		}
 		if(hits.Length > 1)
 		{
 			destination = hits[1].point - Vector2.right * dirMult;
@@ -64,14 +63,20 @@ public class Assassin : Character
 			destination = (Vector2)transform.position + dirMult * Vector2.right * dashDistance;
 		}
 		rb.bodyType = RigidbodyType2D.Kinematic;
-		transform.position = destination;
-		Invoke(nameof(DashFinish), dashDuration);
+		rb.velocity = Vector2.zero; // transform.localScale.x * Vector2.right;
+		StartCoroutine(nameof(IE_DashFinish), destination);
 		Invoke(nameof(DashCooldown), dashCooldown);
 	}
-	private void DashFinish()
+	private IEnumerator IE_DashFinish(Vector2 _destination)
 	{
-		rb.velocity = Vector2.zero;
+		yield return new WaitForSeconds(DASH_DURATION);
+		transform.position = _destination;
 		rb.bodyType = RigidbodyType2D.Dynamic;
+		yield return new WaitForSeconds(DASH_DURATION);
+		dashParticle.Stop();
+	}
+	private void SetParticleDeactive()
+	{
 		dashParticle.Stop();
 	}
 	private void DashCooldown()
