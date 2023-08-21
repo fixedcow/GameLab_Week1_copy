@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1734535680260d14e9e6302b7ec5c695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 4295754523477504915, guid: eda2e3047abc8664db1db16e5dec92c9, type: 3}
   dustTrail: {fileID: 2846736844129142480}
   mainColorPart:
   - {fileID: 7383942548561833272}

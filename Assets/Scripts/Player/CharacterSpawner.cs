@@ -8,7 +8,7 @@ public class CharacterSpawner : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
-	[SerializeField] private GameObject characterPrefab;
+	[SerializeField] private UIPortraitContainer portrait;
 
 	[SerializeField] private Color32 colorMain;
 	[SerializeField] private Color32 colorSub;
@@ -23,10 +23,10 @@ public class CharacterSpawner : MonoBehaviour
 	#region PublicMethod
 	public Character SpawnPlayer(GameObject _target)
 	{
-		characterPrefab = _target;
-		Character c = Instantiate(characterPrefab, new Vector2(firstSpawnPointX, MAP_HEIGHT), Quaternion.identity).GetComponent<Character>();
+		Character c = Instantiate(_target, new Vector2(firstSpawnPointX, MAP_HEIGHT), Quaternion.identity).GetComponent<Character>();
 		c.SetColor(colorMain, colorSub);
 		c.transform.localScale = new Vector3(localXScale, 1, 1);
+		portrait.SetPortrait(c.GetPortrait(), colorMain, colorSub);
 		return c;
 	}
 	public void Respawn(Character _target)
@@ -39,6 +39,10 @@ public class CharacterSpawner : MonoBehaviour
 	{
 		firstSpawnPointX = xPos;
 		localXScale = xPos > 0 ? -1 : 1;
+	}
+	public void ClearPortrait()
+	{
+		portrait.ClearPortrait();
 	}
 	#endregion
 

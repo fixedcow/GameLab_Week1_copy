@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
 
 	private GameObject stage;
 	[SerializeField] private UIVictroyScene victory;
-    #endregion
+	#endregion
 
-    #region PrivateVariables
+	#region PrivateVariables
     #endregion
 
     #region PublicMethod
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 	}
 	public void Initialize()
 	{
+		player1.GameEndDeactivePlayer();
+		player2.GameEndDeactivePlayer();
 		UISelectSceneStage.instance.SelectSceneStart();
 	}
 	public void StartBattle()
@@ -49,6 +51,8 @@ public class GameManager : MonoBehaviour
 	public void GameEnd()
 	{
 		onGameEnd.Invoke();
+		player1.SetControllerDeactive();
+		player2.SetControllerDeactive();
     }
 	public void SetStage(GameObject _stage) => stage = _stage;
 	public UIVictroyScene GetVictroyScene() => victory;
@@ -62,13 +66,14 @@ public class GameManager : MonoBehaviour
 		player2.SetFirstSpawnPoint(5);
 		player1.Initialize();
 		player2.Initialize();
-		Initialize();
 	}
 	private void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.Alpha0))
 		{
 			GameEnd();
+			player1.GameEndDeactivePlayer();
+			player2.GameEndDeactivePlayer();
 			UISelectSceneStage.instance.SelectSceneStart();
 		}
 	}

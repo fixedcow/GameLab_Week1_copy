@@ -13,7 +13,7 @@ public abstract class Character : MonoBehaviour
 	private PlayerManager owner;
 	protected Rigidbody2D rb;
 	protected Animator anim;
-	[SerializeField] UIPortrait portrait;
+	[SerializeField] GameObject portrait;
 	[SerializeField] protected ParticleSystem dustTrail;
 	[SerializeField] private List<SpriteRenderer> mainColorPart = new List<SpriteRenderer>();
 	[SerializeField] private List<SpriteRenderer> subColorPart = new List<SpriteRenderer>();
@@ -122,6 +122,7 @@ public abstract class Character : MonoBehaviour
 		transform.position = Vector2.zero;
 		transform.localScale = 3 * Vector3.one;
 	}
+	public GameObject GetPortrait() => portrait;
 	#endregion
 
 	#region PrivateMethod

@@ -9,8 +9,8 @@ public class UILifeCountText : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
-	private TextMeshPro txt;
-	private Animator anim;
+	[SerializeField] private TextMeshPro txt;
+	[SerializeField] private Animator anim;
 	#endregion
 
 	#region PublicMethod
@@ -28,10 +28,5 @@ public class UILifeCountText : MonoBehaviour
 	#endregion
 
 	#region PrivateMethod
-	private void Awake()
-	{
-		TryGetComponent(out txt);
-		TryGetComponent(out anim);
-	}
 	#endregion
 }

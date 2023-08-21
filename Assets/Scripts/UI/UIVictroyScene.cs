@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class UIVictroyScene : MonoBehaviour
 {
@@ -9,15 +8,15 @@ public class UIVictroyScene : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
-	[SerializeField] private TextMeshPro text;
 	[SerializeField] private Character winner;
+	private bool readyForInput = false;
 	#endregion
 
 	#region PublicMethod
-	public void SetWinner(Character _winner, string _str)
+	public void SetWinner(Character _winner)
 	{
+		Invoke(nameof(ReadyForInput), 1f);
 		winner = _winner;
-		text.text = _str + " Victory!";
 		PrintWinner();
 	}
 	public void PrintWinner()
@@ -36,13 +35,17 @@ public class UIVictroyScene : MonoBehaviour
 		if (winner == null)
 			return;
 
-		if(Input.anyKeyDown)
+		if(readyForInput == true && Input.anyKeyDown)
 		{
 			Destroy(winner.gameObject);
 			winner = null;
 			GameManager.instance.Initialize();
 			gameObject.SetActive(false);
 		}
+	}
+	private void ReadyForInput()
+	{
+		readyForInput = true;
 	}
 	#endregion
 }

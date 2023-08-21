@@ -34,6 +34,10 @@ public class Stage4Manager : StageManager
 			Lightening();
 		}
 	}
+	private void OnDisable()
+	{
+		CancelInvoke(nameof(ThunderRandomPlatforms));
+	}
 	private void Lightening()
 	{
 		animLigthening.Play("Lightening");
