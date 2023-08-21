@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	public UnityEvent onGameEnd;
 
 	private GameObject stage;
+	[SerializeField] private UIVictroyScene victory;
     #endregion
 
     #region PrivateVariables
@@ -25,6 +26,10 @@ public class GameManager : MonoBehaviour
 	{
 		if (instance == null)
 			instance = this;
+	}
+	public void Initialize()
+	{
+		UISelectSceneStage.instance.SelectSceneStart();
 	}
 	public void StartBattle()
 	{
@@ -46,6 +51,7 @@ public class GameManager : MonoBehaviour
 		onGameEnd.Invoke();
     }
 	public void SetStage(GameObject _stage) => stage = _stage;
+	public UIVictroyScene GetVictroyScene() => victory;
 	#endregion
 
 	#region PrivateMethod
@@ -56,7 +62,7 @@ public class GameManager : MonoBehaviour
 		player2.SetFirstSpawnPoint(5);
 		player1.Initialize();
 		player2.Initialize();
-		UISelectSceneStage.instance.SelectSceneStart();
+		Initialize();
 	}
 	private void Update()
 	{

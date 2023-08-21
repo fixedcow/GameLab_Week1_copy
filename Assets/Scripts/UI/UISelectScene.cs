@@ -8,6 +8,8 @@ public abstract class UISelectScene : MonoBehaviour
 	#endregion
 
 	#region PrivateVariables
+	[SerializeField] UISelectScene pre;
+	[SerializeField] UISelectScene post;
 	[SerializeField] protected List<UISelector> selectors = new List<UISelector>();
 	[SerializeField] private List<GameObject> components = new List<GameObject>();
 	private int endCount = 0;
@@ -45,13 +47,25 @@ public abstract class UISelectScene : MonoBehaviour
 	}
 	public virtual void SelectSceneEnd()
 	{
-		foreach (GameObject comp in components)
+		ExitThisSelectScene();
+	}
+	public void ExitThisAndLoadPreScene()
+	{
+		if (pre != null)
 		{
-			comp.SetActive(false);
+			ExitThisSelectScene();
+			pre.SelectSceneStart();
 		}
 	}
 	#endregion
 
 	#region PrivateMethod
+	private void ExitThisSelectScene()
+	{
+		foreach (GameObject comp in components)
+		{
+			comp.SetActive(false);
+		}
+	}
 	#endregion
 }

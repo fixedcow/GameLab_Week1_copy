@@ -28,18 +28,22 @@ public class PlayerManager : MonoBehaviour
 	}
 	public void GameEndDeactivePlayer()
 	{
-		Destroy(character.gameObject);
+		if(character != null)
+		{
+			Destroy(character.gameObject);
+		}
 	}
 	public void PlayerDead()
 	{
 		if (data.SubLife() <= 0)
 		{
 			GameManager.instance.GameEnd();
+			GameManager.instance.GetVictroyScene().SetWinner(GetWinnerCharacter(), GetWinnerName());
 		}
 		else
 		{
 			spawn.Respawn(character);
-		}	
+		}
 	}
 	public void SetFirstSpawnPoint(int _xPos)
 	{
@@ -55,6 +59,28 @@ public class PlayerManager : MonoBehaviour
 			Destroy(character.gameObject);
 		}
 		character = _character;
+	}
+	private string GetWinnerName()
+	{
+		if(this == GameManager.instance.player1)
+		{
+			return "player2";
+		}
+		else
+		{
+			return "player1";
+		}
+	}
+	private Character GetWinnerCharacter()
+	{
+		if (this == GameManager.instance.player1)
+		{
+			return GameManager.instance.player2.character;
+		}
+		else
+		{
+			return GameManager.instance.player1.character;
+		}
 	}
 	#endregion
 }

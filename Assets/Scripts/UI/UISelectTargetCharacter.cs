@@ -9,6 +9,7 @@ public class UISelectTargetCharacter : UISelectTarget
 
 	#region PrivateVariables
 	[SerializeField] private Animator anim;
+	[SerializeField] private GameObject readyText;
 	[SerializeField] private int dirMult = 1;
 	#endregion
 
@@ -27,12 +28,14 @@ public class UISelectTargetCharacter : UISelectTarget
 	{
 		gameObject.transform.localScale = new Vector3(dirMult * 1.2f, 1.2f, 1);
 		anim.enabled = false;
+		readyText.SetActive(true);
 	}
 
 	public override void LockOut()
 	{
 		gameObject.transform.localScale = new Vector3(dirMult, 1, 1);
 		anim.enabled = true;
+		readyText.SetActive(false);
 	}
 	#endregion
 

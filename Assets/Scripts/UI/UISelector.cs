@@ -64,7 +64,12 @@ public class UISelector : MonoBehaviour
 		}
 		if(Input.GetKeyDown(cancel))
 		{
-			LockOut();
+			if(selectFinished == true)
+				LockOut();
+			else if(selector == GameManager.instance.player1)
+			{
+				scene.ExitThisAndLoadPreScene();
+			}
 		}
 	}
 	private void MoveLeft()

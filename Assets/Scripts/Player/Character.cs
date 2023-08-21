@@ -13,6 +13,7 @@ public abstract class Character : MonoBehaviour
 	private PlayerManager owner;
 	protected Rigidbody2D rb;
 	protected Animator anim;
+	[SerializeField] UIPortrait portrait;
 	[SerializeField] protected ParticleSystem dustTrail;
 	[SerializeField] private List<SpriteRenderer> mainColorPart = new List<SpriteRenderer>();
 	[SerializeField] private List<SpriteRenderer> subColorPart = new List<SpriteRenderer>();
@@ -114,6 +115,12 @@ public abstract class Character : MonoBehaviour
 	public void Bounce(Vector2 direction, float magnitude)
 	{
 		rb.velocity = direction * magnitude;
+	}
+	public void MakeWinnerStatue()
+	{
+		rb.bodyType = RigidbodyType2D.Static;
+		transform.position = Vector2.zero;
+		transform.localScale = 3 * Vector3.one;
 	}
 	#endregion
 
