@@ -51,7 +51,7 @@ public abstract class AttackData : MonoBehaviour
 	}
 	protected virtual void Attack(Character _target, float dirMult)
 	{
-		_target.Hit(this, dirMult * direction.normalized, magnitude);
+		_target.Hit(this, new Vector2(dirMult * direction.normalized.x, direction.normalized.y), magnitude);
 	}
 		#endregion
 	}

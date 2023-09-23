@@ -13,11 +13,14 @@ public class TimeLimitPlatform : Platform
 	[SerializeField] private Rigidbody2D rb;
 	[SerializeField] private Collider2D col;
 	[SerializeField] private Vector2 originPosition;
+	[SerializeField] private SpriteRenderer warnSr;
 	#endregion
 
 	#region PublicMethod
 	public override void Initialize()
 	{
+		gameObject.SetActive(true);
+		warnSr.color = new Color(warnSr.color.r, warnSr.color.g, warnSr.color.b, 0);
 		rb.bodyType = RigidbodyType2D.Kinematic;
 		rb.angularVelocity = 0;
 		transform.rotation = Quaternion.Euler(0, 0, 0);

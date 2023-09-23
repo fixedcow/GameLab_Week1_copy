@@ -293,6 +293,7 @@ MonoBehaviour:
   rb: {fileID: 6009659978619067940}
   col: {fileID: 9098603636674733592}
   originPosition: {x: 0, y: 0}
+  warnSr: {fileID: 1635730156754094719}
 --- !u!1 &9098603636708951595
 GameObject:
   m_ObjectHideFlags: 0
