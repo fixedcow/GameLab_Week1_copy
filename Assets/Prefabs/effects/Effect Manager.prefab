@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2944576936919023051}
   - component: {fileID: 2944576936919023050}
   - component: {fileID: 7137250115641533408}
+  - component: {fileID: 4625095930828990492}
   m_Layer: 0
   m_Name: Effect Manager
   m_TagString: Untagged
@@ -52,6 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effects:
   - {fileID: 2944576936919023050}
+  - {fileID: 7137250115641533408}
+  - {fileID: 4625095930828990492}
   particles:
   - {fileID: 1129674173235010872}
   - {fileID: 8036620490394171646}
@@ -83,7 +86,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348f68a82f6d63249a1c03bc336a54b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 307223082952289310, guid: 6d0ee8bfdccbac2498c6e47127cd552f, type: 3}
+  list: []
+--- !u!114 &4625095930828990492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2944576936919023049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348f68a82f6d63249a1c03bc336a54b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3225089537871178604, guid: dbe8fc35a8824c948ad8a0f5f046568b, type: 3}
   list: []
 --- !u!1001 &779656883312040471
 PrefabInstance:
@@ -159,6 +176,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2944576936919023028}
     m_Modifications:
+    - target: {fileID: 8035734739901796732, guid: 79eebb26cccc815478c3876e700124a2, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8035734739901796733, guid: 79eebb26cccc815478c3876e700124a2, type: 3}
       propertyPath: m_RootOrder
       value: 2
