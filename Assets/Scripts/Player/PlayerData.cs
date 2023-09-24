@@ -17,6 +17,7 @@ public class PlayerData : MonoBehaviour
 	public void Initialize()
 	{
 		life = initLifeCount;
+		text.Initialize();
 		text.Print(life, false);
 	}
 	public int SubLife()

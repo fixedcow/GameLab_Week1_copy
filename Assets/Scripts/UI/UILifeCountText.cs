@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class UILifeCountText : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class UILifeCountText : MonoBehaviour
 	#endregion
 
 	#region PublicMethod
+	public void Initialize()
+	{
+		txt.DOColor(Color.white, 0f);
+		txt.DOScale(1f, 0f);
+	}
 	public void Print(int count, bool playAnimation = true)
 	{
 		if(playAnimation == true)

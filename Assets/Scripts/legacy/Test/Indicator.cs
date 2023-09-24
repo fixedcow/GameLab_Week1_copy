@@ -168,7 +168,7 @@ public class Indicator : MonoBehaviour
 	{
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 		Quaternion angleAxis = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
-		Quaternion rotation = Quaternion.Slerp(_indicatorDirection.transform.rotation, angleAxis, 5 * Time.deltaTime);
+		Quaternion rotation = Quaternion.Slerp(_indicatorDirection.transform.rotation, angleAxis, 50 * Time.deltaTime);
 		_indicatorDirection.transform.localRotation = rotation;
 	}
 	#endregion
