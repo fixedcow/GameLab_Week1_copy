@@ -85,11 +85,14 @@ public abstract class Character : MonoBehaviour
 		{
 			CameraController.instance.SmashShake();
 			EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.smash, transform.position, Vector2.zero);
+			EffectManager.instance.CallEffect(EffectManager.EEffectType.hit, transform.position, 1);
+			EffectManager.instance.CallEffect(EffectManager.EEffectType.ripple, transform.position, 1, 30);
 		}
 		else
 		{
 			CameraController.instance.AttackShake();
 			EffectManager.instance.CallParticleEffect(EffectManager.EParticleEffectType.attack, transform.position, Vector2.zero);
+			EffectManager.instance.CallEffect(EffectManager.EEffectType.hit, transform.position, 1);
 		}
 		canAct = false;
 		anim.SetTrigger("hit");

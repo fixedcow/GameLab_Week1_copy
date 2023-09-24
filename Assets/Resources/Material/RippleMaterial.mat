@@ -8,19 +8,27 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RippleMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: f4644c083288d274b9757201b0481673, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: c82bcd10829934f42bb380d5a0e41318, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 7d144f03d90a70b4198a3a3c309d589a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CameraSortingLayerTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -58,15 +66,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BumpAmt: 10
     - _DistortionIntensity: 0.1
     - _DistortionScale: 3.43
     - _EnableExternalAlpha: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RippleCount: 4
+    - _RippleSpeed: 2
+    - _RippleStrength: 4
+    - _ShockWaveStrength: -0.1
+    - _Size: 0.05
+    - _WaveDistanceFromCenter: -0.1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RingSpawnPosition: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _RippleCenter: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8260829419066966486
 MonoBehaviour:

@@ -11,7 +11,9 @@ public class EffectManager : MonoBehaviour
 	public enum EEffectType
 	{
 		smash = 0,
-		absoluteKill = 1
+		absoluteKill = 1,
+		hit = 2,
+		ripple = 3
 	}
 	public enum EParticleEffectType
 	{
@@ -33,7 +35,7 @@ public class EffectManager : MonoBehaviour
 			instance = this;
 		}
 	}
-	public void CallEffect(EEffectType _type, Vector2 _position, float _rotMult)
+	public void CallEffect(EEffectType _type, Vector2 _position, float _rotMult, float _scaleMult = 1)
 	{
 		GameObject current = GetEffectFromList(_type);
 		EffectBundle bundle = effects[(int)_type];
@@ -42,13 +44,13 @@ public class EffectManager : MonoBehaviour
 		{
 			current = Instantiate(bundle.prefab, _position, Quaternion.identity, transform) as GameObject;
 			bundle.list.Add(current);
-            current.transform.localScale = new Vector3(_rotMult, 1, 1);
+            current.transform.localScale = new Vector3(_rotMult * _scaleMult, _scaleMult, _scaleMult);
         }
 		else
 		{
 			current.transform.position = _position;
-            current.transform.localScale = new Vector3(_rotMult, 1, 1);
-            current.SetActive(true);
+			current.transform.localScale = new Vector3(_rotMult * _scaleMult, _scaleMult, _scaleMult);
+			current.SetActive(true);
 		}
 	}
 	public void CallParticleEffect(EParticleEffectType _type, Vector2 _position, Vector2 _direction)
